@@ -1,0 +1,52 @@
+{
+  "name": "myApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@date-io/moment": "^2.13.1",
+    "@react-native-community/datetimepicker": "^6.0.1",
+    "@react-native-picker/picker": "^2.4.0",
+    "@react-navigation/native": "^6.0.8",
+    "@react-navigation/native-stack": "^6.5.0",
+    "@react-navigation/stack": "^6.1.1",
+    "date-fns": "^2.28.0",
+    "dayjs": "^1.11.0",
+    "hsl-to-hex": "^1.0.0",
+    "react": "17.0.2",
+    "react-native": "0.67.3",
+    "react-native-common-date-picker": "^2.3.6",
+    "react-native-date-picker": "^4.2.0",
+    "react-native-datepicker": "^1.7.2",
+    "react-native-gesture-handler": "^2.3.2",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-neu-element": "^1.1.9",
+    "react-native-paper-dates": "^0.8.7",
+    "react-native-reanimated": "^2.4.1",
+    "react-native-safe-area-context": "^4.2.1",
+    "react-native-screens": "^3.13.1",
+    "react-native-svg": "^12.3.0",
+    "react-native-table-component": "^1.2.2",
+    "react-native-vector-icons": "^9.1.0",
+    "react-timekeeper": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.7",
+    "@babel/runtime": "^7.17.7",
+    "@react-native-community/eslint-config": "^3.0.1",
+    "babel-jest": "^27.5.1",
+    "eslint": "^8.11.0",
+    "jest": "^27.5.1",
+    "metro-react-native-babel-preset": "^0.69.1",
+    "react-test-renderer": "17.0.2"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
