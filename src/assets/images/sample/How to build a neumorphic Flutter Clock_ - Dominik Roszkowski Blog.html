@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://roszkowski.dev/2020/flutter-clock/ -->
+<html lang="en" class=" js "><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+<!-- begin _includes/seo.html --><title>How to build a neumorphic Flutter Clock? - Dominik Roszkowski Blog</title>
+<meta name="description" content="I was lucky to be one of the honorable mentions in Flutter Clock challenge organized by Google and Lenovo. My analog clock gained a bit of popularity on Twitter, so I decided to show how I achieved this neumorphic look in Flutter.">
+
+
+  <meta name="author" content="Dominik Roszkowski">
+  
+  <meta property="article:author" content="Dominik Roszkowski">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Dominik Roszkowski Blog">
+<meta property="og:title" content="How to build a neumorphic Flutter Clock?">
+<meta property="og:url" content="https://roszkowski.dev/2020/flutter-clock/">
+
+
+  <meta property="og:description" content="I was lucky to be one of the honorable mentions in Flutter Clock challenge organized by Google and Lenovo. My analog clock gained a bit of popularity on Twitter, so I decided to show how I achieved this neumorphic look in Flutter.">
+
+
+
+
+
+  <meta name="twitter:site" content="@OrestesGaolin">
+  <meta name="twitter:title" content="How to build a neumorphic Flutter Clock?">
+  <meta name="twitter:description" content="I was lucky to be one of the honorable mentions in Flutter Clock challenge organized by Google and Lenovo. My analog clock gained a bit of popularity on Twitter, so I decided to show how I achieved this neumorphic look in Flutter.">
+  <meta name="twitter:url" content="https://roszkowski.dev/2020/flutter-clock/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2020-02-25T15:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://roszkowski.dev/2020/flutter-clock/">
+
+
+
+
+<script type="text/javascript" async="" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/ga.js.download"></script><script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Dominik Roszkowski",
+      "url": "https://roszkowski.dev/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="https://roszkowski.dev/feed.xml" type="application/atom+xml" rel="alternate" title="Dominik Roszkowski Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/main.css">
+<link rel="stylesheet" href="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+<link href="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/css2" rel="stylesheet">
+  <script src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/embed.js(1).download" data-timestamp="1647902803205"></script><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.63860eb743c7d9d2adf0fa435788abe7.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.9450cde9dd2c9d366781a8fc5ff6e933.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.90614da243fa6052a038b5539f5086e5.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><script async="" id="dsq_recs_scr" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/recommendations.js.download"></script><script charset="utf-8" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/horizon_tweet.b9ac0a13a4a1d52c80651179f4fe9b68.js.download"></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/recommendations/styles/recommendations.10022a97346f1c6e3798931bbd8e4bb5.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/recommendations/common.bundle.e74fcfd3f6ed52bbcd40cf72972ae6c3.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/recommendations/recommendations.bundle.926bc472e4859a48daa346b4ba2ab4f4.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><script src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/alfie_v4.63f1ab6d6b9d5807dc0c94ef3fe0b851.js.download" async="" charset="UTF-8"></script></head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="https://roszkowski.dev/2020/flutter-clock/#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="https://roszkowski.dev/2020/flutter-clock/#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="https://roszkowski.dev/2020/flutter-clock/#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="https://roszkowski.dev/">
+          Dominik Roszkowski Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://roszkowski.dev/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://roszkowski.dev/talks/">Public Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://roszkowski.dev/contact/">Contact</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button" count="0">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope="" itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/dr_badge_small.png" alt="Dominik Roszkowski" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Dominik Roszkowski</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Flutter Google Developer Expert and Developer at <a href="http://verygood.ventures/">Very Good Ventures</a></p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope="" itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Warsaw, Poland</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+            <li><a href="https://twitter.com/OrestesGaolin" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:dominik@roszkowski.dev">
+            <meta itemprop="email" content="dominik@roszkowski.dev">
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope="" itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to build a neumorphic Flutter Clock?">
+    <meta itemprop="description" content="I was lucky to be one of the honorable mentions in Flutter Clock challenge organized by Google and Lenovo. My analog clock gained a bit of popularity on Twitter, so I decided to show how I achieved this neumorphic look in Flutter.">
+    <meta itemprop="datePublished" content="2020-02-25T15:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to build a neumorphic Flutter Clock?
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li class=""><a href="https://roszkowski.dev/2020/flutter-clock/#foreword">Foreword</a></li><li class=""><a href="https://roszkowski.dev/2020/flutter-clock/#codepen">Codepen</a></li><li class=""><a href="https://roszkowski.dev/2020/flutter-clock/#basics-of-neumorphic-design">Basics of neumorphic design</a></li><li class="active"><a href="https://roszkowski.dev/2020/flutter-clock/#easy-part---outer-shadows">Easy part - outer shadows</a></li><li class=""><a href="https://roszkowski.dev/2020/flutter-clock/#hard-part---inner-shadows">Hard part - inner shadows</a></li><li class=""><a href="https://roszkowski.dev/2020/flutter-clock/#tricky-part---hand-shadows">Tricky part - hand shadows</a></li><li class=""><a href="https://roszkowski.dev/2020/flutter-clock/#wrap-up">Wrap up</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>I was lucky to be one of the honorable mentions in <a href="https://flutter.dev/clock">Flutter Clock</a> challenge organized by Google and Lenovo. My analog clock gained a bit of popularity on Twitter, so I decided to show how I achieved this neumorphic look in Flutter.</p>
+
+<p>BTW all the results <a href="https://medium.com/flutter/its-time-the-flutter-clock-contest-results-dcebe2eb3957">are here</a>.</p>
+
+<div class="twitter-tweet twitter-tweet-rendered" style="display: flex; max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" style="position: static; visibility: visible; width: 550px; height: 600px; display: block; flex-grow: 1;" title="Twitter Tweet" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/Tweet.html" data-tweet-id="1219722638924402689" __idm_id__="4177922"></iframe></div>
+<script async="" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/widgets.js.download" charset="utf-8"></script>
+
+<!-- **Contents**
+
+* TOC
+{:toc} -->
+
+<h2 id="foreword" class="">Foreword<a class="header-link" href="https://roszkowski.dev/2020/flutter-clock/#foreword" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h2>
+
+<p>Neumorphic design became pretty popular these days. Many designers and developers tried to achieve this new skeuomorphic look. When Flutter Clock challenge was in progress we were preparing to <a href="https://fluttereurope.dev/">Flutter Europe</a> conference, so I didn’t have much time for my submission. However, the example app prepared by the organizers was so flexible that I was able to finish my design in couple of evenings.</p>
+
+<p>Few main features of this clock face are:</p>
+
+<ul>
+  <li>it’s analog clock</li>
+  <li>it supports light and dark mode</li>
+  <li>it shows a large dim icon with current weather condition</li>
+  <li>movement of clock hands is animated (i.e. it’s continuous even though it looks like it’s stepping every second)</li>
+</ul>
+
+<p>Some of you perhaps realized, that I was heavily inspired by the <a href="https://en.wikipedia.org/wiki/Swiss_railway_clock">Swiss clock</a> design. The original has much sharper edges and opposite layout of the seconds hand, though.</p>
+
+<h2 id="codepen" class="">Codepen<a class="header-link" href="https://roszkowski.dev/2020/flutter-clock/#codepen" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h2>
+
+<p>Thanks to <a href="https://twitter.com/majse_">Maria Jose</a> my clock is available as codepen:</p>
+
+<div class="cp_embed_wrapper"><iframe allowfullscreen="true" allowpaymentrequest="true" allowtransparency="true" class="cp_embed_iframe " frameborder="0" height="365" width="100%" name="cp_embed_1" scrolling="no" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/VwvepBW.html" style="width: 100%; overflow:hidden; display:block;" title="Neumorphic Clock - @orestesgaolin" loading="lazy" id="cp_embed_VwvepBW"></iframe></div>
+<script async="" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/ei.js.download"></script>
+
+<h2 id="basics-of-neumorphic-design" class="">Basics of neumorphic design<a class="header-link" href="https://roszkowski.dev/2020/flutter-clock/#basics-of-neumorphic-design" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h2>
+
+<p>In neumorphic design the most important part is the illusion of continuity between protruding parts and the background. It can be achieved with a simple trick.</p>
+
+<p><img align="right" width="300" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/basics.png"></p>
+
+<p>You need to imagine a light source at a relatively large distance so that the shadows are parallel to each other and they appear softer than usual. It should be similar to typical sun rays but on a smaller scale.</p>
+
+<p>The important feature is that the protruding object and the background should have the same or very similar color (<code class="language-plaintext highlighter-rouge">color x</code> on the image). This gives an illusion of a single material and helps a bit with selecting shadow colors. For the material use a color that’s a bit darker than white, because you’ll need white (or some light shade of your color) for the top light reflection (<code class="language-plaintext highlighter-rouge">bright shadow</code> on the image)<sup id="fnref:1" role="doc-noteref"><a href="https://roszkowski.dev/2020/flutter-clock/#fn:1" class="footnote" rel="footnote">1</a></sup>.</p>
+
+<p>I found that the easiest way is to select the same color but with different brightness for the dark and light shadows. In Flutter this is very easy if you use <a href="https://api.flutter.dev/flutter/material/MaterialColor-class.html">MaterialColor</a> and their shades.</p>
+
+<h2 id="easy-part---outer-shadows" class="active">Easy part - outer shadows<a class="header-link" href="https://roszkowski.dev/2020/flutter-clock/#easy-part---outer-shadows" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h2>
+
+<p>If we want to achieve the illusion of a protruding object we just need to add outer shadows to our Container. Remember that this effect looks the best in case of objects with rounded corners.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Shadow color (canvasColor): Colors.grey[500],</span>
+<span class="c1">// Inner shadow color (dividerColor) Colors.grey[400],</span>
+<span class="c1">// Background color: Colors.grey[300],</span>
+<span class="k">return</span> <span class="nf">Container</span><span class="p">(</span>
+  <span class="nl">decoration:</span> <span class="n">BoxDecoration</span><span class="o">(</span>
+    <span class="nl">shape:</span> <span class="n">BoxShape</span><span class="o">.</span><span class="na">circle</span><span class="o">,</span>
+    <span class="nl">color:</span> <span class="n">customTheme</span><span class="o">.</span><span class="na">backgroundColor</span><span class="o">,</span>
+    <span class="nl">boxShadow:</span> <span class="o">[</span>
+      <span class="n">BoxShadow</span><span class="o">(</span>
+        <span class="nl">color:</span> <span class="n">darkMode</span> <span class="o">?</span> <span class="n">Colors</span><span class="o">.</span><span class="na">white</span><span class="o">.</span><span class="na">withOpacity</span><span class="o">(</span><span class="mf">0.2</span><span class="o">)</span> <span class="o">:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">white</span><span class="o">,</span>
+        <span class="c1">// unit is some relative part of the canvas width</span>
+        <span class="nl">offset:</span> <span class="n">Offset</span><span class="o">(-</span><span class="n">unit</span> <span class="o">/</span> <span class="mi">2</span><span class="o">,</span> <span class="o">-</span><span class="n">unit</span> <span class="o">/</span> <span class="mi">2</span><span class="o">),</span>
+        <span class="nl">blurRadius:</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">unit</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="n">BoxShadow</span><span class="o">(</span>
+        <span class="nl">color:</span> <span class="n">customTheme</span><span class="o">.</span><span class="na">dividerColor</span><span class="o">,</span>
+        <span class="nl">offset:</span> <span class="n">Offset</span><span class="o">(</span><span class="n">unit</span> <span class="o">/</span> <span class="mi">2</span><span class="o">,</span> <span class="n">unit</span> <span class="o">/</span> <span class="mi">2</span><span class="o">),</span>
+        <span class="nl">blurRadius:</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">unit</span><span class="o">,</span>
+      <span class="o">),</span>
+    <span class="o">],</span>
+  <span class="o">),</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>This gives us a following effect. Looks more or less like a torus extracted from the background. In case of circular shapes the shadow aligns correctly i.e. it’s radially longer in bottom right part and shorter in the middle.</p>
+
+<p><img src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/outer-shadows.png" alt=""></p>
+
+<h2 id="hard-part---inner-shadows" class="">Hard part - inner shadows<a class="header-link" href="https://roszkowski.dev/2020/flutter-clock/#hard-part---inner-shadows" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h2>
+
+<p>It’s much more difficult to create decent inner shadows in case of circular shapes. There’s no inner shadow property in Flutter so what I came up with is a combination of overlapping <a href="https://api.flutter.dev/flutter/painting/RadialGradient-class.html">radial gradients</a>. They had to be offset (<code class="language-plaintext highlighter-rouge">center</code> property) and tweaked a bit (<code class="language-plaintext highlighter-rouge">radius</code>, <code class="language-plaintext highlighter-rouge">focalRadius</code> and <code class="language-plaintext highlighter-rouge">stops</code>) to look realistic enough.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Inner shadow color (dividerColor) Colors.grey[400],</span>
+
+<span class="k">return</span> <span class="nf">Stack</span><span class="p">(</span>
+  <span class="nl">children:</span> <span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;[</span>
+    <span class="n">Container</span><span class="o">(</span>
+      <span class="nl">decoration:</span> <span class="n">BoxDecoration</span><span class="o">(</span>
+        <span class="nl">shape:</span> <span class="n">BoxShape</span><span class="o">.</span><span class="na">circle</span><span class="o">,</span>
+        <span class="nl">color:</span> <span class="n">customTheme</span><span class="o">.</span><span class="na">backgroundColor</span><span class="o">,</span>
+        <span class="nl">gradient:</span> <span class="n">RadialGradient</span><span class="o">(</span>
+          <span class="nl">colors:</span> <span class="o">[</span>
+            <span class="n">darkMode</span>
+                <span class="o">?</span> <span class="n">customTheme</span><span class="o">.</span><span class="na">backgroundColor</span><span class="o">.</span><span class="na">withOpacity</span><span class="o">(</span><span class="mf">0.0</span><span class="o">)</span>
+                <span class="o">:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">white</span><span class="o">.</span><span class="na">withOpacity</span><span class="o">(</span><span class="mf">0.0</span><span class="o">),</span>
+            <span class="n">customTheme</span><span class="o">.</span><span class="na">dividerColor</span><span class="o">,</span>
+          <span class="o">],</span>
+          <span class="nl">center:</span> <span class="n">AlignmentDirectional</span><span class="o">(</span><span class="mf">0.1</span><span class="o">,</span> <span class="mf">0.1</span><span class="o">),</span>
+          <span class="nl">focal:</span> <span class="n">AlignmentDirectional</span><span class="o">(</span><span class="mf">0.0</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">),</span>
+          <span class="nl">radius:</span> <span class="mf">0.65</span><span class="o">,</span>
+          <span class="nl">focalRadius:</span> <span class="mf">0.001</span><span class="o">,</span>
+          <span class="nl">stops:</span> <span class="o">[</span><span class="mf">0.3</span><span class="o">,</span> <span class="mf">1.0</span><span class="o">],</span>
+        <span class="o">),</span>
+      <span class="o">),</span>
+    <span class="o">),</span>
+    <span class="n">Container</span><span class="o">(</span>
+      <span class="nl">decoration:</span> <span class="n">BoxDecoration</span><span class="o">(</span>
+        <span class="nl">shape:</span> <span class="n">BoxShape</span><span class="o">.</span><span class="na">circle</span><span class="o">,</span>
+        <span class="nl">color:</span> <span class="n">customTheme</span><span class="o">.</span><span class="na">backgroundColor</span><span class="o">,</span>
+        <span class="nl">gradient:</span> <span class="n">RadialGradient</span><span class="o">(</span>
+          <span class="nl">colors:</span> <span class="o">[</span>
+            <span class="n">darkMode</span>
+                <span class="o">?</span> <span class="n">customTheme</span><span class="o">.</span><span class="na">backgroundColor</span><span class="o">.</span><span class="na">withOpacity</span><span class="o">(</span><span class="mf">0.0</span><span class="o">)</span>
+                <span class="o">:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">white</span><span class="o">.</span><span class="na">withOpacity</span><span class="o">(</span><span class="mf">0.0</span><span class="o">),</span>
+            <span class="n">darkMode</span> <span class="o">?</span> <span class="n">Colors</span><span class="o">.</span><span class="na">white</span><span class="o">.</span><span class="na">withOpacity</span><span class="o">(</span><span class="mf">0.3</span><span class="o">)</span> <span class="o">:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">white</span><span class="o">,</span>
+          <span class="o">],</span>
+          <span class="nl">center:</span> <span class="n">AlignmentDirectional</span><span class="o">(-</span><span class="mf">0.1</span><span class="o">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="o">),</span>
+          <span class="nl">focal:</span> <span class="n">AlignmentDirectional</span><span class="o">(</span><span class="mf">0.0</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">),</span>
+          <span class="nl">radius:</span> <span class="mf">0.67</span><span class="o">,</span>
+          <span class="nl">focalRadius:</span> <span class="mf">0.001</span><span class="o">,</span>
+          <span class="nl">stops:</span> <span class="o">[</span><span class="mf">0.75</span><span class="o">,</span> <span class="mf">1.0</span><span class="o">],</span>
+        <span class="o">),</span>
+      <span class="o">),</span>
+    <span class="o">),</span>
+  <span class="o">],</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>This way we have our inner shadows ready. Even though the alignment is not perfect it is enough to accept by our brains.</p>
+
+<div class="comparison-slider-wrapper noselect">
+<div class="comparison-slider">
+  <div class="overlay">Dark is red, bright is blue</div>
+  <img src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/inner-shadows1.png" alt="extra colors added">
+  <div class="resize">
+    <div class="overlay">Outer and inner shadows</div>
+  <img src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/inner-shadows.png" alt="inner shadows on the clock face">
+  </div>
+  <div class="divider"></div>
+</div>
+<div class="caption">Slide the ruler to see how gradients are aligned to create inner shadows</div>
+</div>
+
+<h2 id="tricky-part---hand-shadows" class="">Tricky part - hand shadows<a class="header-link" href="https://roszkowski.dev/2020/flutter-clock/#tricky-part---hand-shadows" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h2>
+
+<p>I wanted the hands to cast a shadow according to the light source. It was particularly tricky because as the hands’ positions are transformed around the clock pin, also the shadows of its containers would go together.</p>
+
+<p>The easiest solution was just to duplicate the hands, translate them by some factor with <code class="language-plaintext highlighter-rouge">Transform.translate()</code> (more for the seconds hand, less for the hour hand as it’s closer to the background) and only then add shadows.</p>
+
+<center>
+<video autoplay="" loop="" width="60%" playsinline="" muted="" text="There should be a video of hands animating on the clock face. If not try to use different browser" __idm_id__="4177921">
+  <source src="/assets/images/hands.mov" type="video/mp4">
+  <source src="/assets/images/hands.mp4" type="video/mp4">
+  <source src="/assets/images/hands.webm" type="video/webm">
+  
+</video>
+<p>There should be a video of hands animating on the clock face. If not try to use different browser</p>
+</center>
+
+<p>This way I would have the same orientation of the shadow as the clock hand but always placed a bit to the right and below the hand. This simple step added another factor of 3-dimensionality to the design.</p>
+
+<h2 id="wrap-up" class="">Wrap up<a class="header-link" href="https://roszkowski.dev/2020/flutter-clock/#wrap-up" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h2>
+
+<p>After this step and several other small tweaks the general layout of the clock looks following:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="nf">Stack</span><span class="p">(</span>
+  <span class="nl">children:</span> <span class="o">[</span>
+    <span class="n">OuterShadows</span><span class="o">(),</span>
+    <span class="n">AnimatedClockIcon</span><span class="o">(),</span>
+    <span class="n">InnerShadows</span><span class="o">(),</span>
+    <span class="n">ClockTicks</span><span class="o">(),</span>
+    <span class="c1">// hands shadows are below hands but above clock ticks</span>
+    <span class="n">HourHandShadow</span><span class="o">(),</span>
+    <span class="n">MinuteHandShadow</span><span class="o">(),</span>
+    <span class="n">SecondHandShadow</span><span class="o">(),</span>
+    <span class="n">HourHand</span><span class="o">(),</span>
+    <span class="n">MinuteHand</span><span class="o">(),</span>
+    <span class="n">SecondHand</span><span class="o">(),</span>
+    <span class="n">SecondHandCircle</span><span class="o">(),</span>
+    <span class="n">ClockPin</span><span class="o">(),</span>
+  <span class="o">],</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>And the final result looks like this:</p>
+
+<p><img src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/light.png" alt=""></p>
+
+<p>You can get the repository of the <a href="https://github.com/orestesgaolin/flutter_clock">Flutter Clock here</a>.</p>
+
+<p>Huge congratulations to all the winners and great kudos to all 850 attendees. You did a great job and I was amazed to see some fantastic designs posted <a href="https://twitter.com/search?q=%23FlutterClock">on Twitter</a>.</p>
+
+<div class="fluid-width-video-wrapper" style="padding-top: 56.25%;"><iframe src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/PaPUkxYHDUw.html" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" id="fitvid0"></iframe></div>
+
+<hr>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>I’m going to call both of the elements as shadows even though the top one is a reflection of the light shining at the edge.&nbsp;<a href="https://roszkowski.dev/2020/flutter-clock/#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-02-25T15:00:00+00:00">February 25, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?via=OrestesGaolin&amp;text=How+to+build+a+neumorphic+Flutter+Clock%3F%20https%3A%2F%2Froszkowski.dev%2F2020%2Fflutter-clock%2F" class="btn btn--twitter" onclick="window.open(this.href, &#39;window&#39;, &#39;left=20,top=20,width=500,height=500,toolbar=1,resizable=0&#39;); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Froszkowski.dev%2F2020%2Fflutter-clock%2F" class="btn btn--facebook" onclick="window.open(this.href, &#39;window&#39;, &#39;left=20,top=20,width=500,height=500,toolbar=1,resizable=0&#39;); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Froszkowski.dev%2F2020%2Fflutter-clock%2F" class="btn btn--linkedin" onclick="window.open(this.href, &#39;window&#39;, &#39;left=20,top=20,width=500,height=500,toolbar=1,resizable=0&#39;); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="https://roszkowski.dev/2020/i18n-in-flutter/" class="pagination--pager" title="Convenient internationalization of Flutter apps
+">Previous</a>
+    
+    
+      <a href="https://roszkowski.dev/2020/rotate-image-from-camera-in-flutter/" class="pagination--pager" title="How to fix rotated image from camera in Flutter?
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Comments</h4>
+      <div id="disqus_recommendations" style="margin-bottom: 12px;"><iframe id="dsq-app2973" name="dsq-app2973" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/saved_resource.html" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 0px !important; display: inline !important; box-sizing: border-box !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div><section id="disqus_thread"><iframe id="dsq-app599" name="dsq-app599" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/saved_resource(1).html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 394px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope="" itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="https://roszkowski.dev/2021/i18n-in-flutter/" rel="permalink">New and easy internationalization of Flutter apps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Flutter provides a set of useful APIs that enable you to support multiple languages out of the box. In this post you’ll learn how to use new simplified appro...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope="" itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="https://roszkowski.dev/2021/flutter-it-i-ty/" rel="permalink">Podcast - Flutter – wejście w mobilny świat 🇵🇱
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I had a chance to talk about Flutter in new podcast called IT i ty by Damian Ruciński. Please have a listen if you’d like to learn some introductory details ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope="" itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="https://roszkowski.dev/2020/flutter-animated-logo/" rel="permalink">Flutter Animated Logo with CustomPainter
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          11 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">FlutterLogo is a really handy widget. But what if we want to have it animated like in some of the Flutter team videos? We can try to do it with Rive, but let...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope="" itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="https://roszkowski.dev/2020/rotate-image-from-camera-in-flutter/" rel="permalink">How to fix rotated image from camera in Flutter?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">When using camera package in Flutter it often happens that the picture rotation is messed up. For instance the image may be rotated by 90 degrees in the Imag...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != &#39;Enter&#39;;">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/OrestesGaolin" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/orestesgaolin" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="https://roszkowski.dev/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2022 Dominik Roszkowski. Powered by <a href="https://jekyllrb.com/" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/main.min.js.download"></script>
+
+
+
+
+<script src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/lunr.min.js.download"></script>
+<script src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/lunr-store.js.download"></script>
+<script src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/lunr-en.js.download"></script>
+
+
+
+
+  <script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-143758559-1']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://roszkowski.dev/2020/flutter-clock/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/2020/flutter-clock"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://roszkowski-dev.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/widget_iframe.a58e82e150afc25eb5372dd55a98b778.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe style="display: none;" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/saved_resource(2).html"></iframe><iframe style="display: none;" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/saved_resource(3).html"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./How to build a neumorphic Flutter Clock_ - Dominik Roszkowski Blog_files/saved_resource(4).html"></iframe></body></html>

@@ -1,0 +1,58 @@
+Since Android doesn't have shadowOffset, shadowRadius, or shadowOpacity, 
+shadowColor: Sets the drop shadow color.
+shadowOffset: Sets the drop shadow offset.
+shadowOpacity: Sets the drop shadow opacity (multiplied by the color’s alpha component).
+shadowRadius: Sets the drop shadow blur radius.
+
+textShadowColor color //'#000'
+textShadowOffset {width: number, height: number} //{ width: 0.5, height: 0.5 }
+textShadowRadius number //1
+
+v-offset : A positive vertical offset creates a shadow below the box, and a negative offset creates one above the box.
+blur : The blur radius of the shadow.
+spread : The size of the shadow.
+color : The color of the shadow.
+An inner shadow can be created using the box-shadow property, which allows different types of shadows to be added to an element.
+
+
+“give shadow to INPUT BOX react native” 
+    shadowColor: “#000”,
+    shadowOffset: {
+    width: 0,
+    height: 10,
+    },
+    shadowOpacity: 0.12,
+    shadowRadius: 60,
+    ​
+ "add shadow to VIEW in react native"
+    shadowContainerStyle: {
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: ‘#ddd’,
+    borderBottomWidth: 0,
+    shadowColor: ‘#000000’,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    
+    "add elevation"
+    const styles = StyleSheet. create({ scrollContainer: { flex: 1, }, container: { flex: 1, flexDirection: “row”, flexWrap: “wrap”, padding: 2 }, box: { margin: 8, width: Dimensions. get(‘window’). width / 2 – 18, height: Dimensions.
+    
+    color: #ebf5fc;
+    text-shadow: 2px 2px 2px rgba(00,00,00,0.5), => background: '#000000' and 'opacity: 0.5'
+                -2px -2px 2px rgb(255,255,255,0.9); => background: '#ffffff' and 'opacity: 0.9'
+                
+                background: #ebf5fc;
+                box-shadow: -6px -6px  10px rgba(255,255,255,1),
+                                6px 6px  10px rgba(0,0,0,0.1);
+                                
+                box-shadow: inset -6px -6px 10px rgba(255,255,255,1) ,
+                           inset 6px 6px 20px rgba(0,0,0,0.1);
+                           
+                .input-field:normal {
+                    background: #ebf5fc;
+                    box-shadow: inset -6px -6px 10px rgba(255,255,255,.9) ,
+                                inset 6px 6px 10px rgba(0,0,0,.1);  
+                
+                .input-field:pressed {
+                    box-shadow: -2px -2px  5px rgba(255,255,255,1),
+                                6px 6px  10px rgba(0,0,0,0.1);
