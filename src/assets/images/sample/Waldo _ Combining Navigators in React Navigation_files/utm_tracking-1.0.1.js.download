@@ -1,0 +1,133 @@
+(function() {
+// resource to read: https://developer.mozilla.org/pt-BR/docs/Web/API/Document/cookie
+  const WaldoUtmCookie = "__waldo_utm"
+// use for redirection between website
+  const urlParam = "wat"
+  const expDays = 300
+
+  const trackedParams = [
+    "utm_campaign",
+    "utm_term",
+    "utm_source",
+    "utm_medium",
+    "utm_content",
+    "gclid"
+  ]
+
+  function isSameSource(object, other) {
+    if (!object && !other) return true
+    if (!object || !other) return false
+    const objectKeys = Object.keys(object)
+    const otherKeys = Object.keys(other)
+    if (objectKeys.length !== otherKeys.length) return false
+    // We do not compare on the timestamp since it gets updated every read
+    return objectKeys.every(k => (k === "ts") || object[k] === other[k])
+  }
+
+  function bareDomain(hostname) {
+    const parts = hostname.split(".")
+    if (parts.length === 1) return parts[0]
+    return `.${parts[parts.length - 2]}.${parts[parts.length - 1]}`
+  }
+
+  function getWaldoAttribution() {
+    const cookie = document.cookie.split("; ")
+      .find(row => row.trim().startsWith(WaldoUtmCookie))
+    if (cookie) {
+      const cookieValue = cookie.substr(cookie.indexOf("=") + 1)
+      return JSON.parse(cookieValue)
+    }
+    return []
+  }
+
+// We de-dup hops by the timestamps
+  function mergePaths(destPath, otherPath) {
+    const byTs = {}
+    destPath.forEach(s => {
+      byTs[s.ts] = s
+    })
+    otherPath.forEach(s => {
+      byTs[s.ts] = s
+    })
+    return Object.keys(byTs).sort().map(ts => byTs[ts])
+  }
+
+  function utmTouch() {
+    const parseQueryString = (queryString) => {
+      let params = {}, queries, temp, i, l
+      // Split into key/value pairs
+      queries = queryString.split("&")
+      // Convert the array of strings into an object
+      for (i = 0, l = queries.length; i < l; i++) {
+        temp = queries[i].split("=")
+        params[temp[0]] = decodeURIComponent(temp[1])
+      }
+      return params
+    }
+
+    const params = parseQueryString(window.location.search.substr(1))
+    const source = {}
+
+    trackedParams.forEach(key => {
+      if (params[key] !== undefined) {
+        source[key] = params[key]
+      }
+    })
+
+    if (document.referrer) {
+      // discard when coming from the same host
+      const match = /:\/\/([^/]+)\//.exec(document.referrer)
+      if (match && match[1].toLowerCase() !== window.location.host.toLowerCase()) {
+        // Do not append the query parameters to avoid super long attribution tokens
+        source["referrer"] = document.referrer.split("?")[0]
+      }
+    }
+
+    // Append to what we currently know for this user
+    let currentPath = getWaldoAttribution()
+
+    // if coming from another website handled by waldo, merge into the path
+    if (params[urlParam]) {
+      const inheritedPath = JSON.parse(atob(params[urlParam]))
+      currentPath = mergePaths(currentPath, inheritedPath)
+    }
+
+    // Finally add the current one to the path
+    if (Object.keys(source).length > 0) {
+      const sourceWithContext = { ...source, target: window.location.host, ts: Date.now() }
+      const lastSource = (currentPath.length) ? currentPath[currentPath.length - 1] : null
+      if (!isSameSource(lastSource, sourceWithContext)) {
+        currentPath.push(sourceWithContext)
+      }
+    }
+
+    return currentPath
+  }
+
+  const pageRootDomain = bareDomain(window.location.hostname)
+
+  function trackWaldoAttribution(waldoAttribution) {
+    // increase cookie expiration date
+    const expires = new Date()
+    expires.setDate(expires.getDate() + expDays)
+    document.cookie = `${WaldoUtmCookie}=${JSON.stringify(waldoAttribution)};domain=${pageRootDomain};path=/;expires=${expires.toUTCString()}`
+  }
+
+  function getAttributionToken() {
+    const waldoAttribution = getWaldoAttribution()
+    return btoa(JSON.stringify(waldoAttribution))
+  }
+
+  if (!window.waldoAttribution) {
+    try {
+      const attributionPath = utmTouch()
+      trackWaldoAttribution(attributionPath)
+    } catch (e) {
+    }
+
+    window.waldoAttribution = {
+      getAttributionToken,
+      resetToken() { trackWaldoAttribution([]); }
+    }
+  }
+})();

@@ -1,0 +1,42 @@
+morphTop: {
+    borderRadius: RADIUS,
+    // box-shadow is equivalent to shadow style in React Native
+    shadowOffset: {
+      width: -1,
+      height: -1,
+    },
+    shadowOpacity:1,
+    shadowRadius: 1,
+    shadowColor: color(BACKGROUND).lighten(0.1),
+  },
+  morphBottom: {
+    borderRadius: RADIUS,
+    // box-shadow is equivalent to shadow style in React Native
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowOpacity:1,
+    shadowRadius: 1,
+    shadowColor: color(BACKGROUND).darken(0.1),
+  },
+  
+  #box shadow in react native
+  shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 4,
+},
+shadowOpacity: 0,
+shadowRadius: 4.65,
+elevation: 8,
+
+react native shaddow
+shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 12,
+},
+shadowOpacity: 0.58,
+shadowRadius: 16.00,
+elevation: 24,

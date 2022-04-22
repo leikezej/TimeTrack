@@ -1,9 +1,24 @@
-Every Neumorphic Component in react-native-neu-element has the following props: ( *must have )
-Color: String*
-Height: Number*
-Width: Number*
+#595959
+#7f7f7f
+#a5a5a5
+#cccccc
+#f2f2f2
+ 
+#fcfafa
+#fffdf7
+#f4fffd
+#fffffc
+#fbfbff
+#
+
+#08090a
+#010001
+#01110a
+#050404
+
 
 background:##e0e5ec;
+
 background: #ebf5fc;
     box-shadow: -6px -6px  10px rgba(255,255,255,1),
                     6px 6px  10px rgba(0,0,0,0.1);
@@ -28,34 +43,3 @@ icons:     box-shadow: -6px -6px  10px rgba(255,255,255,1),
   --primary-dark: #4526f9,
   --primary-light: #c7befd
   
-employee id
-rfid code 
-time in
-time out
-logdate
-
-
-greyscale 
-  #e9ecef
-  #ced4da
-  #6c757d
-  #343a40
-premium-grey
-  #dcdcdd
-  #c5c3c6
-  #4c5c68
-  #1985a1
-  
-How To Do a Full Clean of a React Native Project
-
-watchman watch-del-all.
-rm -rf yarn.lock package-lock.json node_modules.
-rm -rf android/app/build.
-rm ios/Pods ios/Podfile.lock.
-rm -rf ~/Library/Developer/Xcode/DerivedData.
-npm install && cd ios && pod update && cd ..
-npm start — –reset-cache.
-
-
-android > app > src > main > res > values > strings.xml => name change
-\android\app\build\intermediates\packaged_manifests\debug\AndroidManifest.xml

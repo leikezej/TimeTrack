@@ -1,6 +1,7 @@
 package com.myapp;
 
 import com.facebook.react.ReactActivity;
+import com.rnandroidpicker.PickerPackage;
 
 public class MainActivity extends ReactActivity {
 

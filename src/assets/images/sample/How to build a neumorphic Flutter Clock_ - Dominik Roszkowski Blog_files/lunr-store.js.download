@@ -1,0 +1,61 @@
+var store = [{
+        "title": "Flavors in Flutter with Fastlane - yet another guide",
+        "excerpt":"It’s a good practice to build separate apps for development, test and production environment. In case of mobile apps a good way to have separate configurations is usage of flavors. In this tutorial you will learn how to prepare ordinary Flutter project to have 3 different flavors (dev, test and...","categories": [],
+        "tags": [],
+        "url": "/2019/flutter-flavors/",
+        "teaser": null
+      },{
+        "title": "Using custom curve in Flutter Hero animations",
+        "excerpt":"Sometimes the default Hero behavior is not enough and you’d like to add some custom taste to it. One of the simple ways to do it is to customize curve of the transition animation. In this post you’ll see a sample that allows to use any custom curve to animate...","categories": [],
+        "tags": [],
+        "url": "/2019/custom-hero-curve/",
+        "teaser": null
+      },{
+        "title": "About Flutter in DevTalk podcast 🇵🇱",
+        "excerpt":"I had a chance to talk about Flutter in DevTalk podcast. We talked about history of Flutter, its specific features like hot reload or tooling. I also told about my experiences with Flutter and compared it to other technologies.   Go here to listen to podcast.     ","categories": [],
+        "tags": [],
+        "url": "/2019/devtalk-103/",
+        "teaser": null
+      },{
+        "title": "Distribute Flutter app to Firebase and stores from Codemagic",
+        "excerpt":"For last couple of weeks I was configuring a build pipeline for upcoming Flutter Europe conference app. I decided to use Codemagic to see if it’s possible to handle multiple flavors and fastlane builds there. After few discussions with Codemagic support on their Slack and many build minutes I came...","categories": [],
+        "tags": [],
+        "url": "/2019/flutter-ci-cd-with-firebase-and-codemagic/",
+        "teaser": null
+      },{
+        "title": "Convenient internationalization of Flutter apps",
+        "excerpt":"There are many ways to have multiple languages in your app in Flutter. Some folks use canonical Flutter arb files. Other use some json equivalents or statically typed constant resources like r_flutter. In this post I’m going to show you the way I find the most convenient to setup and...","categories": [],
+        "tags": [],
+        "url": "/2020/i18n-in-flutter/",
+        "teaser": null
+      },{
+        "title": "How to build a neumorphic Flutter Clock?",
+        "excerpt":"I was lucky to be one of the honorable mentions in Flutter Clock challenge organized by Google and Lenovo. My analog clock gained a bit of popularity on Twitter, so I decided to show how I achieved this neumorphic look in Flutter. BTW all the results are here. I didn&#39;t...","categories": [],
+        "tags": [],
+        "url": "/2020/flutter-clock/",
+        "teaser": null
+      },{
+        "title": "How to fix rotated image from camera in Flutter?",
+        "excerpt":"When using camera package in Flutter it often happens that the picture rotation is messed up. For instance the image may be rotated by 90 degrees in the Image.file() widget. There were many issues on GitHub and SO that mention this like this, this, this and this. There are multiple...","categories": [],
+        "tags": [],
+        "url": "/2020/rotate-image-from-camera-in-flutter/",
+        "teaser": null
+      },{
+        "title": "Flutter Animated Logo with CustomPainter",
+        "excerpt":"FlutterLogo is a really handy widget. But what if we want to have it animated like in some of the Flutter team videos? We can try to do it with Rive, but let’s challenge ourselves and do it in pure Dart. You can check out the final result in the...","categories": [],
+        "tags": [],
+        "url": "/2020/flutter-animated-logo/",
+        "teaser": null
+      },{
+        "title": "Podcast - Flutter – wejście w mobilny świat 🇵🇱",
+        "excerpt":"I had a chance to talk about Flutter in new podcast called IT i ty by Damian Ruciński. Please have a listen if you’d like to learn some introductory details about Flutter and how it is to be a Flutter Freelancer. Listen to “ITiTy#011 Flutter - wejście w mobilny świat...","categories": [],
+        "tags": [],
+        "url": "/2021/flutter-it-i-ty/",
+        "teaser": null
+      },{
+        "title": "New and easy internationalization of Flutter apps",
+        "excerpt":"Flutter provides a set of useful APIs that enable you to support multiple languages out of the box. In this post you’ll learn how to use new simplified approach to i18n and see ways to conveniently manage the ARB files. After 1 year since previous i18n tutorial here comes the...","categories": [],
+        "tags": [],
+        "url": "/2021/i18n-in-flutter/",
+        "teaser": null
+      }]
