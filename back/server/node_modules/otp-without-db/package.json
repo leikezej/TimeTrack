@@ -1,0 +1,31 @@
+{
+  "name": "otp-without-db",
+  "version": "1.0.4",
+  "description": "Database less OTP verification with cryptography",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://git@github.com/theanam/otp-without-db.git"
+  },
+  "keywords": [
+    "otp",
+    "sms",
+    "verification",
+    "cryptography",
+    "smsverify",
+    "emailverify",
+    "2fa"
+  ],
+  "author": {
+    "name": "Anam Ahmed",
+    "email": "me@anam.co"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/theanam/otp-without-db/issues"
+  },
+  "homepage": "https://github.com/theanam/otp-without-db#readme"
+}

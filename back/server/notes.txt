@@ -1,0 +1,99 @@
+CREATE DATABASE IF NOT EXISTS `all-in-db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `all-in-db`;
+
+CREATE TABLE `tokens` (
+    `id` int(12) DEFAULT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `users` (
+    `id` int(255) NOT NULL,
+    `user_id` int(11) NOT NULL
+    `name` varchar(25) NOT NULL,
+    `fname` varchar(25) NOT NULL,
+    `lname` varchar(25) NOT NULL,
+    `email` varchar(25) NOT NULL,
+    `contact` bigint(30) DEFAULT NULL,
+    `password` varchar(25) NOT NULL,
+    `confirmPassword` varchar(25) NOT NULL,
+    `created_at`    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    `updated_at`    DATETIME on UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `user_category_id` int(1) NOT NULL,
+    `status` int(1) NOT NULL
+    PRIMARY KEY (`id`),
+    UNIQUE `idx_name_unique` (`name`(255))
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  
+  CREATE TABLE `mobiles` (
+    `id` int(11) NOT NULL,
+    `mobile` varchar(255) DEFAULT NULL,
+    `token` varchar(255) DEFAULT NULL,
+    `isVerified` tinyint(1) DEFAULT 0
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  
+  CREATE TABLE `timelogs` (
+    `id` int(255) NOT NULL,
+  )
+  
+  CREATE TABLE `roles` (
+    `id` int(11) NOT NULL,
+    `name` varchar(255) DEFAULT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  
+  CREATE TABLE `user_roles` (
+    `roleId` int(11) NOT NULL,
+    `userId` int(11) NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  
+  CREATE TABLE `tbl_time_sheet` (
+    `time_sheet_id` int(11) NOT NULL,
+    `user_id` int(11) NOT NULL,
+    `date_recorded` date NOT NULL,
+    `time_in_am` time NOT NULL,
+    `time_out_am` time NOT NULL,
+    `time_in_pm` time NOT NULL,
+    `time_out_pm` time NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    
+    CREATE TABLE `login_times` (
+        `login_id` INT(9) NOT NULL AUTO_INCREMENT,
+        `employee_id` INT(5) DEFAULT NULL,
+        `dept_id` INT(2) DEFAULT NULL,
+        `login_of_day` INT(2) DEFAULT NULL,
+        `date` DATE DEFAULT NULL,
+        `time_in` TIME DEFAULT NULL,
+        `time_out` TIME DEFAULT NULL,
+        PRIMARY KEY (`login_id`)
+      ) ENGINE=INNODB DEFAULT CHARSET=latin1
+      
+      CREATE TABLE `schedule_times` (
+        `schedule_id` INT(9) NOT NULL AUTO_INCREMENT,
+        `employee_id` INT(5) DEFAULT NULL,
+        `login_of_day` INT(2) DEFAULT NULL,
+        `date_start` DATE DEFAULT NULL,
+        `date_end` DATE DEFAULT NULL,
+        `time_in` DATETIME DEFAULT NULL,
+        `time_out` DATETIME DEFAULT NULL,
+        PRIMARY KEY (`schedule_id`)
+      ) ENGINE=INNODB DEFAULT CHARSET=latin1
+      
+      CREATE TABLE `timesheet` (
+        `id` INT(9) NOT NULL AUTO_INCREMENT,
+        `schedule_id` INT(9) NOT NULL AUTO_INCREMENT,
+        `employee_id` INT(5) DEFAULT NULL,
+        `login_of_day` INT(2) DEFAULT NULL,
+        `date_start` DATE DEFAULT NULL,
+        `date_end` DATE DEFAULT NULL,
+        `time_in` DATETIME DEFAULT NULL,
+        `time_out` DATETIME DEFAULT NULL,
+        `date_submitted` DATETIME DEFAULT NULL
+        PRIMARY KEY (`schedule_id`)
+      ) ENGINE=INNODB DEFAULT CHARSET=latin1
+      
+      
+      CREATE TABLE `test`.`timeclock` (
+        `id` INT NOT NULL AUTO_INCREMENT,
+        `user` INT NULL,
+        `timeinout` DATETIME NULL,
+        `type` ENUM('in', 'out') NULL,
+        `function` INT NULL,
+        PRIMARY KEY (`id`) );

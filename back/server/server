@@ -1,0 +1,39 @@
+const express = require("express");
+const port = 5000;
+
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json());
+
+app.use((_, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
+
+//cors 
+const cors = require("cors");
+app.use(cors());
+
+//para pag karawat ht POST data tikang form
+const bodyParser = require("express").json;
+app.use(bodyParser());
+
+// database connection
+mysqldb = require('./utils/database').connection;
+
+
+app.get("/", (req, res) => {
+    res.send("I Am The NodeJS Server Inside React-Native");
+  });
+
+app.listen((err) => {
+    if(err) {
+        console.log('error connecting to db = ', err);
+        return;
+    }
+    app.listen(5000, () => console.log('SERVER IS NOW LIVE AND RUNNING'));
+    console.log(`Server is running at http://localhost:${port}`);
+})
