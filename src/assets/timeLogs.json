@@ -1,0 +1,79 @@
+{
+  "current_page": 1,
+  "data": [
+    {
+      "id": 1,
+      "full_name": "Tupac Shakur",
+      "time_in": "08:40 AM",
+      "time_out": "06:00 PM",
+      "avatar": "https://i.postimg.cc/fR95d2Zx/images.jpg"
+    },
+    {
+      "id": 2,
+      "full_name": "Marshall Mathers",
+      "time_in": "08:00 AM",
+      "time_out": "05:30 PM",
+      "avatar": "https://i.postimg.cc/j2j68vfd/eminem.jpg"
+    },
+    {
+      "id": 3,
+      "full_name": "Robert Marley",
+      "time_in": "09:00 AM",
+      "time_out": "06:30 PM",
+      "avatar": "https://i.postimg.cc/mk04dXnQ/bob.jpg"
+    },
+    {
+      "id": 4,
+      "full_name": "Slim Shady",
+      "time_in": "08:00 AM",
+      "time_out": "05:30 PM",
+      "avatar": "https://i.postimg.cc/BQW8h4KP/slim.png"
+    },
+    {
+      "id": 5,
+      "full_name": "Bob Marley",
+      "time_in": "09:00 AM",
+      "time_out": "06:30 PM",
+      "avatar": "https://i.postimg.cc/HkwPJYQw/bobs.jpg"
+    },
+    {
+      "id": 6,
+      "full_name": "Makaveli",
+      "time_in": "09:00 AM",
+      "time_out": "06:30 PM",
+      "avatar": "https://i.postimg.cc/4y0Q0MpN/makaveli.jpg"
+    }
+  ],
+  "first_page_url": "https://api.mywebtuts.com/api/users?page=1",
+  "from": 1,
+  "last_page": 2,
+  "last_page_url": "https://api.mywebtuts.com/api/users?page=2",
+  "links": [
+    {
+      "url": null,
+      "label": "« Previous",
+      "active": false
+    },
+    {
+      "url": "https://api.mywebtuts.com/api/users?page=1",
+      "label": "1",
+      "active": true
+    },
+    {
+      "url": "https://api.mywebtuts.com/api/users?page=2",
+      "label": "2",
+      "active": false
+    },
+    {
+      "url": "https://api.mywebtuts.com/api/users?page=2",
+      "label": "Next »",
+      "active": false
+    }
+  ],
+  "next_page_url": "https://api.mywebtuts.com/api/users?page=2",
+  "path": "https://api.mywebtuts.com/api/users",
+  "per_page": 6,
+  "prev_page_url": null,
+  "to": 6,
+  "total": 12
+}

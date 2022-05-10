@@ -1,0 +1,68 @@
+vmsbqddv01-1.czpjugq1ogb4.ap-southeast-1.rds.amazonaws.com
+
+sbqadm@10.68.192.109
+port 1561us: jim-user
+pw: 420230!
+
+sudo mysql -u root
+sudo mysql --user=root mysql -p
+mysql_420!
+
+DROP DATABASE databasename;
+USE databasename;
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    column3 datatype,
+   ....
+);
+
+CREATE TABLE Users (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	firstname VARCHAR(30) NOT NULL,
+	lastname VARCHAR(30) NOT NULL,
+	email VARCHAR(50),
+	reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO table_name (column1, column2, column3,...)
+VALUES (value1, value2, value3,...)
+
+INSERT INTO Users(id, firstname, lastname, email, reg_date)
+VALUES ('5', 'John', 'Doe', 'john@example.com', 'march-15-2002')";
+
+SELECT column_name(s) FROM table_name // SELECT * FROM table_name
+
+
+CREATE DATABASE users;
+SHOW DATABASES;
+USE users;
+CREATE TABLE users(
+  id VARCHAR(255) AI PRIMARY,
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
+)
+DESCRIBE users;
+
+INSERT INTO users VALUE ("19", "jepski420", "420230!");
+SELECT * FROM users;
+
+CREATE DATABASE movies1;
+USE movies1;
+CREATE TABLE movies1(title VARCHAR(50) NOT NULL,genre VARCHAR(30) NOT NULL,director VARCHAR(60) NOT NULL,release_year INT NOT NULL,PRIMARY KEY(title));
+INSERT INTO movies1 VALUE ("Joker", "psychological thriller", "Todd Phillips", 2019);
+
+SHOW DATABASES;
+USE movies1;
+SELECT * FROM movies1;
+SELECT title FROM movies;
+
+jepski.ddnsking.com
+
+
+sudo netstat -tlpn
+hostname -i
+hostnamectl
+nslookup 49.145.124.100
+dig -x 49.145.124.100
+host 49.145.124.100
