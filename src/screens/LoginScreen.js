@@ -6,8 +6,111 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/core';
 import { NeuView, NeuButton } from 'react-native-neu-element';
+import PropTypes from 'prop-types';
+
+class AnimatedTypingText extends Component
+{
+    constructor()
+    {
+        super();
+ 
+        this.index = 0;
+ 
+        this.timer = -1;
+ 
+        this.blinking_cursor = -1;
+ 
+        this.state = { 
+
+            text: '', 
+            
+            cursor_color: 'transparent' 
+
+        }
+    }
+ 
+    StartAnimatedTyping = () =>
+    {
+        clearTimeout( this.timer );
+ 
+        this.timer  = -1;
+ 
+        if( this.index < this.props.text.length )
+        {
+            if( this.refs.animatedText )
+            {
+                this.setState({ text: this.state.text + this.props.text.charAt( this.index ) }, () =>
+                {
+                    this.index++;
+ 
+                    this.timer = setTimeout(() =>
+                    {
+                        this.StartAnimatedTyping();
+                        
+                    }, this.props.AnimatedTypingDuration);
+                });
+            }
+        }
+    }
+ 
+    AnimatedblinkingCursor = () =>
+    {
+        this.blinking_cursor = setInterval(() =>
+        {
+            if( this.refs.animatedText )
+            {
+                if( this.state.cursor_color == 'transparent' )
+                {
+                    this.setState({ cursor_color: this.props.color });
+                }
+                else
+                {
+                    this.setState({ cursor_color: 'transparent' });
+                }
+            }
+        }, this.props.AnimatedBlinkingCursorDuration);
+    }
+
+    componentDidMount()
+    {
+        this.StartAnimatedTyping();
+
+        this.AnimatedblinkingCursor();
+    }
+ 
+    componentWillUnmout()
+    {
+        clearTimeout( this.timer );
+ 
+        this.timer = -1;
+ 
+        clearInterval( this.blinking_cursor );
+ 
+        this.blinking_cursor = -1;
+    }
+ 
+    render()
+    {
+        return(
+            <View style = {{ alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-start' }}>
+
+                <Text ref = "animatedText" style = {{ 
+                    color: this.props.TextColor, 
+                    fontSize: this.props.AnimatedTextSize, 
+                    textAlign: 'center' }}>
+                    
+                    { this.state.text }                
+                    
+                    <Text style = {{ color: this.state.cursor_color }}>|</Text>
+
+                </Text>
+            </View>
+        );
+    }
+}
 
 export default class Login extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -19,13 +122,11 @@ export default class Login extends Component {
   }
 
   LoginUser=()=>{
-    const navigation = useNavigation();
-  
     var Email = this.state.email;
     var Password = this.state.password;
 
     if ((Email.length==0) || (Password.length==0)){
-      alert("Required Field Is Missing!!!");
+      alert("Required Field Is Missing!");
     }else{
       var APIURL = "http://192.168.1.11/api/users/Login.php";
 
@@ -42,21 +143,21 @@ export default class Login extends Component {
       fetch(APIURL,{
         method: 'POST',
         headers: headers,
-        body: JSON.stringify(Data)
-    }).then((res) => {
-      if(res.success === true){
-        // this.props.navigation.navigate('HomeScreen');
-        navigation.navigate("HomeScreen")
+        body: JSON.stringify({
+          Email: Email,
+          Password: Password,
+        })
+      }).then((res) => {
+        if(res.success == true){
+        }
+        else {
+          alert('welcome');
+        }
+      })
+       .done();
+          this.props.navigation.navigate("HomeScreen")
       }
-      else {
-        alert('welcome' +   Name);
-      }
-    })
-     .done();
-        // this.props.navigation.navigate("HomeScreen")
-        navigation.navigate("HomeScreen")
-    }
-  } 
+    }   
   //   function navigate(){
   //     navigation.navigate('RegisterScreen');    
   // }
@@ -86,9 +187,19 @@ export default class Login extends Component {
                       Welcome Back
                   </Text>  */}
                   
-                  <Text style={styles.Welcome2}>
+<View
+  style={styles.Welcome2}
+>
+                  <AnimatedTypingText
+                  style={styles.Welcome2}
+                      text = "LOGIN"
+                      TextColor = "#000"
+                      AnimatedTextSize = {30}
+                  />
+</View>
+                  {/* <Text style={styles.Welcome2}>
                       Log In
-                  </Text>
+                  </Text> */}
     
                       
                   <View style={styles.FormView}>
@@ -96,77 +207,80 @@ export default class Login extends Component {
                        <TextInput placeholder={"Passsword"} secureTextEntry={true} placeholderTextColor={"#fff"} style={styles.TextInput}/> */}
                             
                             {/* Username or Email */}
-                            <View style={{
-                            }}>
-                               <NeuView 
-                                    color='#eef2f9' 
-                                    height={70} 
-                                    width={350}
-                                    marginTop={20}
-                                    borderRadius={16}
-                                      inset
-                                      >
-                                      
-                                      <TextInput 
-                                          placeholder={"Email Address"}
-                                          height={190}
-                                          // onChangeText={firstName => setFirstNameText(firstName)}
-                                          autoFocus
-                                          width={100}
-                                          underlineColorAndroid="transparent"
-                                          keyboardType={'email-address'}
-                                          style={styles.TextInput} 
-                                          borderColor={'transparent'}
-                                          // value={email}
-                                          onChangeText={email=>this.setState({email})}
-                                          // onChangeText={(email) => setEmail(email)}
-                                          // onChangeText={(text) => setEmail(text)}
-                                          // onChangeText={(text) => this.handleText(text)}
-                                          // value={this.state.text}
-                                          // autoCapitalize={false} 
-                                          // autoCorrect={false}
-                                          returnKeyType="next"
-                                          // onSubmitEditing={this.nextFieldFocus}
-                                 />
-                                     {/* <Text style={{fontSize:32,color:'green'}}>
-                                        Your email is :{this.state.email}
-                                      </Text> */}
-                               </NeuView>
-                             </View>
+                            <View styles={{ marginTop: 20 }}>
+                                            <NeuView  
+                                                    color='#eef2f9' 
+                                                    height={70} 
+                                                    width={350}
+                                                    marginTop={20}
+                                                    borderRadius={16}
+                                                      inset
+                                                      >
+                                                <View style={styles.sectionStyle}>
+                                                  <Image
+                                                    source={{
+                                                      uri:
+                                                        'https://img.icons8.com/ios/344/email-sign.png',
+                                                    }}
+                                                    style={styles.imageStyle}
+                                                  />
+                                                  <TextInput
+                                                    onChangeText={email=>this.setState({email})}
+                                                    // onChangeText={(text) => setEmail(text)}
+                                                    // value={this.state.email}
+                                                    activeUnderlineColor="black"
+                                                    style={{flex: 1}}
+                                                    placeholder="Email Address"
+                                                    underlineColorAndroid="transparent"
+                                                    borderColor="transparent"
+                                                    keyboardType='email-address'
+                                                  />
+                                                </View>
+                                          </NeuView>
+                                       </View>
                              
                              
                              {/* password  */}
-                            <View 
-                              style={{ marginTop: 20}}
-                            >
-                               <NeuView 
-                                    color='#eef2f9' 
-                                    height={70} 
-                                    width={350}
-                                    marginTop={50}
-                                    borderRadius={16}
-                                      inset
-                                      >
-                                      
-                                      <TextInput 
-                                          secureTextEntry
-                                          // secureTextEntry={"hidePass ? true : false"}
-                                          placeholder={"Enter Password"}
-                                          height={190}
-                                          width={100}
-                                          // keyboardType={'visible-password'} 
-                                          style={styles.TextInput} 
-                                          borderColor={'transparent'}
-                                          // value={password}
-                                          onChangeText={password=>this.setState({password})}
-                                          // onChangeText={(password) => setPassword(password)}
-                                          // autoCapitalize={false} 
-                                          // autoCorrect={false}
-                                          returnKeyType="next"
-                                          // onSubmitEditing={this.nextFieldFocus}
-                                 />
-                               </NeuView>
-                             </View>
+                             <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                            <NeuView  
+                                                    color='#eef2f9' 
+                                                    height={70} 
+                                                    width={350}
+                                                    marginTop={20}
+                                                    borderRadius={16}
+                                                      inset
+                                                      >
+                                                <View style={styles.sectionStyle}>
+                                      <Image
+                                        source={{
+                                          uri:
+                                            'https://img.icons8.com/ios/344/password--v1.png',
+                                        }}
+                                        style={styles.imageStyle}
+                                      />
+                                      <TextInput
+                                activeUnderlineColor="black"
+                                      // secureTextEntry
+                                        style={{flex: 1}}
+                                        placeholder="Password"
+                                        underlineColorAndroid="transparent"
+                                        secureTextEntry={this.state.secureTextEntry ? true : false}
+                                        borderColor="transparent"
+                                        // value={password}
+                                        // value={this.state.password}
+                                        onChangeText={password=>this.setState({password})}
+                                        // onChangeText={(text) => setPassword(text)}
+                                      />
+                                      <TouchableOpacity
+                                        onPress={() =>this.setState({secureTextEntry: !this.state.secureTextEntry})}
+                                        // onPress={this.updateSecureTextEntry.bind(this)}    
+                                      >     
+                                          <Feather name={true ? "eye-off" : "eye"}  size={25} />
+                                      </TouchableOpacity> 
+                                        </View>
+                                                
+                                                </NeuView>
+                                      </View>
                        
                           {/* <Text style={styles.InputLabel}>Password</Text>
                        <TextInput secureTextEntry={true} placeholderTextColor={"#000"} style={styles.TextInput}/> */}
@@ -202,10 +316,9 @@ export default class Login extends Component {
                                       style={{marginLeft: 5, marginTop: 50}}
                                   >
                                     <TouchableOpacity
-                                      // onPress={()=>{
-                                      //   this.LoginUser()
-                                      // }}
-                                      // onPress={() => navigation.navigate('HomeScreen')}
+                                      onPress={()=>{
+                                        this.LoginUser()
+                                      }}
                                       // onPress={this.login}
                                     >
                                     <Text style={styles.buttonText}>
@@ -320,6 +433,26 @@ const styles = StyleSheet.create({
     //   justifyContent: 'center'
     //   // backgroundColor: '#c5c5c5',
     // },
+    imageStyle: {
+      padding: 10,
+      margin: 5,
+      height: 30,
+      width: 30,
+      resizeMode: 'stretch',
+      alignItems: 'center',
+    },
+    sectionStyle: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#eef2f9',
+      borderWidth: 0.5,
+      borderColor: 'transparent',
+      height: 40,
+      borderRadius: 5,
+      margin: 10,
+      height: 50,
+    },
     forgot: {
       marginTop: 10,
       marginLeft: 230
@@ -393,11 +526,14 @@ const styles = StyleSheet.create({
       color: '#000'
     },
     RegButtonText: {
+      color: '#000',
+      fontWeight: 'bold',
       display: 'flex',
       flex: 1,
       flexDirection:  'row'
     },
     ButtonText: {
+      fontWeight: 'bold',
       // color: "#000",
       color: 'black',
       size: 50,
@@ -447,12 +583,14 @@ const styles = StyleSheet.create({
       
     },
     Welcome2:{
+      alignItems: 'center',
+      justifyContent: 'center',
       // marginBottom: 50,
       marginTop: 80,
-      marginLeft: 140,
-      fontSize: 40,
+      // marginLeft: 140,
+      fontSize: 170,
       color: '#000',
-      fontWeight: '900'
+      fontWeight: 'bold'
     },
     InputLabel:{
       marginLeft:0,
@@ -511,4 +649,22 @@ const styles = StyleSheet.create({
       // shadowOpacity:  1.40,
       // shadowRadius: 5.62,
   },
+
 })
+AnimatedTypingText.propTypes =
+{
+  text: PropTypes.string,
+  AnimatedTextSize: PropTypes.number,
+  TextColor: PropTypes.string,
+  AnimatedTypingDuration: PropTypes.number,
+  AnimatedBlinkingCursorDuration: PropTypes.number
+},
+ 
+AnimatedTypingText.defaultProps =
+{
+  text: "Default Animated Typing Text.",
+  TextColor: "#00E676",
+  AnimatedTextSize: 25,
+  AnimatedTypingDuration: 60,
+  AnimatedBlinkingCursorDuration: 200
+}

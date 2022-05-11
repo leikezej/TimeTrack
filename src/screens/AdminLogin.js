@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text,View, AsyncStorage, TextInput, TouchableOpacity} from 'react-native';
+import {Text,View, AsyncStorage, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 
 class AdminLogin extends React.Component{
     state = {
@@ -15,12 +15,12 @@ class AdminLogin extends React.Component{
     render(){
        return(
         <View>
-            <View style={{marginTop:50}}>
+            <View style={styles.container}>
                 <Text>
-                Login page!
+                Admin Login!
                 </Text>
                     <View>
-                    <TextInput placeholder="Enter email" value={this.state.email} onChangeText={(value)=>this.setState({email:value})}/>
+                    <TextInput placeholder="Enter username" value={this.state.username} onChangeText={(value)=>this.setState({username:value})}/>
                     </View>
                     
                     <View>
@@ -38,4 +38,4 @@ class AdminLogin extends React.Component{
       )
      }
     }
-export default Login;
+export default AdminLogin;

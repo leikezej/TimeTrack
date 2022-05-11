@@ -437,7 +437,7 @@ export default function App({ navigation }) {
           style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, marginRight: 15, textAlign: 'center' }}
           >Time</Text>
         <View>
-            <Image source={require('../assets/images/icons/out.png')} style={{
+            <Image source={require('../assets/images/b-icons/meeting.png')} style={{
               width: 80,
               height: 80,
               // marginTop: 30,

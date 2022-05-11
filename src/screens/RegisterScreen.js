@@ -223,7 +223,7 @@ export default class Register extends Component {
                                                       >
                                                 <View style={styles.sectionStyle}>
                                                 <PhoneInput
-                                                            backgroundColor="#eef2f9"
+                                                            // backgroundColor="#eef2f9"
                                                             // ref={phoneInput}
                                                             // defaultValue={phone}
                                                             height="50"
@@ -267,8 +267,6 @@ export default class Register extends Component {
                                         }}
                                         style={styles.imageStyle}
                                       />
-                                      
-                                      
                                       <TextInput
                                 activeUnderlineColor="black"
                                       // secureTextEntry
@@ -608,8 +606,9 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   phoneNumberView: {
+    marginTop: 10,
     width: 330,
-    backgroundColor: '#eef2f8',
+    backgroundColor: '#eef2f9',
     height: 60,
     marginBottom: 5,
     borderRadius: 15

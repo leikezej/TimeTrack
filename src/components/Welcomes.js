@@ -2,28 +2,23 @@ import React, { useState , useEffect } from 'react';
 import { StatusBar, SafeAreaView, StyleSheet, View, Dimensions, Text, onPress, TouchableHighlight } from 'react-native';
 const { width } = Dimensions.get('screen');
 // import dayjs from 'dayjs';
-import moment from 'moment'; 
-
 const SIZE = width * 0.9;
-import { NeuBorderView, NeuSpinner, NeuButton } from 'react-native-neu-element';
-import { Animated, Easing} from 'react-native';
 
+import { NeuBorderView, NeuButton } from 'react-native-neu-element';
 
 const App = ({ navigation }) => {
   
   function navigate(){
-    navigation.navigate('LoginScreen');
+    navigation.navigate('TimeIn');
 } 
 
 //   function navigate(){
 //     navigation.navigate('TimeOut');
 // } 
   
-  const [currentDate, setcurrentDate] = useState('');
-  const [currentDateWithMoment, setcurrentDateWithMoment] = useState('');
-  
-  // const [count, setCount] = useState(0);
-  // const onPress = () => setCount(prevCount => prevCount + 1);
+  const [currentDate, setcurrentDate] = useState('')
+  const [count, setCount] = useState(0);
+  const onPress = () => setCount(prevCount => prevCount + 1);
   
   const rotateSeconds = '25deg';
   const transformSeconds = {
@@ -43,22 +38,20 @@ const App = ({ navigation }) => {
   useEffect(() => {
     var date = new Date().getDate() //current Date  
     var month = new Date().getMonth() + 1 //current Month  
-    // var year = new Date().getYear() //current Year  
-    var year = new Date().getFullYear() // get current full year
+    var year = new Date().getYear() //current Year  
     var hours = new Date().getHours() //current Hours  
     var min = new Date().getMinutes() //current Minutes  
     var sec = new Date().getSeconds() //current Seconds  
-    var AMPM = hours >= 12 ? 'PM' : 'AM';
+    var ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
     setcurrentDate(
-      date + '/' + month + '/' + year + ' | ' + hours + ':' + min + ':' +  sec + ' | ' + AMPM
+      date + '/' + month + '/' + year + ' | ' + hours + ':' + min + ':' +  sec + ampm
     )
-    
-    var dateMoment = moment().utcOffset('+08:00')
-                             .format('YYYY/MM/DD | hh:mm:ss A')
-    setcurrentDateWithMoment(dateMoment)
-    }, [])
+    return () => {
+    }
+  }, []
+  )
   
   // useEffect(() => {
   //   date = moment()
@@ -69,31 +62,28 @@ const App = ({ navigation }) => {
   
   return(
     <SafeAreaView style={styles.body}>
-      
       <View style={styles.container}>
-        <NeuBorderView style={styles.wrap}
-          width={380}
-          height={765}
-          color={'#eef2f9'}
-          borderWidth={2}
-          borderRadius={16}
-        >
-                        {/* NeuSpinner AREA*/}
-                      <Animated.View style={styles.wrapper}>
-                        <NeuSpinner
-                          alignItems='center'
-                                style={{ marginTop: 50, alignItems: 'center', justifyContent: 'center' }}
-                          // marginTop={50}
-                          size={200}
-                          // height={50}
-                          width={10}
-                          // indicatorColor='#f2f2f2' 
-                          indicatorColor={'#000'}
-                          duration={6000}
-                          easingType={Easing.linear}
-                          useNativeDriver={'true'}
-                        />
+        {/* <Text style={styles.textStyle}>
+          Current Date & Time  
+        </Text>
+        <Text style={styles.textStyle}>
+          {currentDate}
+        </Text> */}
+      <NeuBorderView style={styles.wrap}
+        width={380}
+        height={765}
+        color={'#eef2f9'}
+        borderWidth={2}
+        borderRadius={16}
+      >
+                            {/* <NeuSpinner
+                        color='#eef2f9'
+                        size={150}
+                        indicatorColor='#aaffc3' 
+                        duration={1000}
+                      /> */}
                       
+                      <View style={styles.wrapper}>
                         <StatusBar hidden={true} />
                         <View style={styles.bigQuadran} />
                           <View style={styles.mediumQuadran} />
@@ -110,87 +100,60 @@ const App = ({ navigation }) => {
                                   <View style={styles.seconds}/>
                                 </View>
                             <View style={styles.smallQuadran} />
-                      </Animated.View>
-                      
-                      <View 
-                        // marginBottom={50}
-                        // marginTop={0}
-                      style={styles.texts}
-                      >
-                          <Text style={styles.baseText}>
-                            <Text style={styles.dateTime}> Current DateTime </Text>
-                          </Text>
                       </View>
-                      
-                      {/* <Text style={styles.textStyle1}>
-                        {currentDate}
+                      {/* <Text style={styles.baseText}>
+                        Current
+                        <Text style={styles.innerText}> Date </Text>
+                        <Text style={styles.outerText}> Time</Text>
                       </Text> */}
-                      
-                      <Text style={styles.textStyles1}>
-                        {currentDateWithMoment}
+                      <Text style={styles.baseText}>
+                        <Text> Current DateTime </Text>
                       </Text>
-
-  <View style={{  flexDirection: 'row'}}>
-                           <NeuButton
-                              // onPress={() => Alert.alert('Time In pressed')}
-                              // onPress={navigate}
-                              // onPress={() => navigation.navigate('AdminLogin')}
-                              // onPress={() => navigation.navigate('navigate')}
-                                  color={'#eef2f9'}
-                                  // color="#841584"
-                                  width={150}  
-                                  height={70}
-                                  fontSize={70}
-                                  fontWeight={'bold'}
-                                  borderRadius={16}
-                                  style={{marginLeft: 20, marginTop: 50}}>
-                                      <Text style={styles.buttonText}>
-                                        Admin
-                                      </Text>
-                              </NeuButton>
-                              
+        
+        <Text style={styles.textStyle1}>
+          {currentDate}
+        </Text>
+{/*         
+        <Text>Count: {count}</Text> */}
+        <View style={styles.buttons}>
                               <NeuButton
                               // onPress={() => Alert.alert('Time In pressed')}
-                               onPress={navigate}
-                              // onPress={() => navigation.navigate('AdminLogin')}
-                              
-                              // onPress={() => navigation.navigate('navigate')}
+                              onPress={navigate}
                                   color={'#eef2f9'}
                                   // color="#841584"
                                   width={150}  
-                                  height={70}
-                                  fontSize={70}
+                                  height={60}
                                   fontWeight={'bold'}
                                   borderRadius={16}
                                   style={{marginLeft: 20, marginTop: 50}}>
                                       <Text style={styles.buttonText}>
-                                      Employeer
+                                        Time In
                                       </Text>
                               </NeuButton>
-                           </View>
-                           
-                <View style={styles.buttons}>
-                                      <NeuButton
-                                      // onPress={() => Alert.alert('Time In pressed')}
-                                      // onPress={navigate}
-                                      onPress={() => navigation.navigate('LoginScreen')}
-                                          color={'#eef2f9'}
-                                          // color="#841584"
-                                          width={330}  
-                                          height={70}
-                                          fontSize={70}
-                                          fontWeight={'bold'}
-                                          borderRadius={16}
-                                          style={{marginLeft: 20, marginTop: 50}}>
-                                              <Text style={styles.buttonText}>
-                                                Get Started
-                                              </Text>
-                                      </NeuButton>
-        
-                  </View>
-        </NeuBorderView>
+                              <NeuButton
+                              // onPress={navigate}
+                              onPress={() => navigation.navigate('TimeOut')}
+                                  color={'#eef2f9'}
+                                  width={160}
+                                  height={60}
+                                  borderRadius={16}
+                                  style={{marginLeft: 20, marginTop: 50}}>
+                                      <Text style={styles.buttonText}>
+                                        Time Out
+                                      </Text>
+                              </NeuButton>
+    </View>
+      </NeuBorderView>
       </View>
       
+      
+      {/* <TouchableHighlight
+  style={styles.submit}
+  onPress={() => this.submitSuggestion(this.props)}
+    <Text style={[styles.submitText]}>Submit</Text>
+</TouchableHighlight> */}
+
+
     </SafeAreaView>
   );
 };
@@ -198,16 +161,13 @@ const App = ({ navigation }) => {
 const styles = StyleSheet.create({
 body: {
   // backgroundColor: '#000',
-  height: '100%',
-},
-dateTime: {
-  marginTop: 60,
+  height: '100%'
+  
 },
 baseText: {
   fontWeight: 'bold',
   color: '#000',
-  fontSize: 35,
-  marginTop: 100,
+  fontSize: 35
 },
 _innerText: {
   // color: 'red'
@@ -225,19 +185,8 @@ outerText: {
 },
 wrap: {
   // backgroundColor: '#909',
-  height: '100%',
-  marginRight: 3
-  // marginTop: 10,
-  
+  height: '100%'
 },
-spinner: {
-},
-spinnerView: {
-  marginTop: 150,
-  justifyContent: 'center',
-  alignItems: 'center'
-},
-
 buttons:{
   flexDirection: 'row',
   alignItems: 'center',
@@ -267,17 +216,12 @@ textStyle: {
 textStyle1: {
   marginBottom: 100,
   textAlign: 'center',
-  fontSize: 28,
-  color: '#3d3d3d',
+  fontSize: 25,
+  color: 'red',
   fontFamily: "Poppins",
   fontWeight: 'bold'
-},
-textStyles1: {
-  color: 'red',
-  fontWeight: 'bold',
-  fontSize: 28,
   
-},  
+},
 // clock { 
   //   // width: 300,
   //   // height:  300,
@@ -309,10 +253,9 @@ textStyles1: {
 
 wrapper : {
   flex: 1,
-  // backgroundColor: '#ffff',
+  backgroundColor: '#ffff',
   alignItems: 'center',
-  justifyContent: 'center',
-  marginTop: 50,
+  justifyContent: 'center'
 },
 mover: {
   position: 'absolute',
@@ -349,7 +292,7 @@ bigQuadran: {
   width: SIZE * 0.8,
   height: SIZE * 0.8,
   borderRadius: SIZE * 0.4,
-  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+  backgroundColor: 'rgba(200, 200, 200, 0.2)',
   position: 'absolute'
 },
 mediumQuadran:{

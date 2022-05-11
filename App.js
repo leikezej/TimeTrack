@@ -15,6 +15,7 @@ import SplashScreen from './src/screens/SplashScreen';
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
+import AdminLogin from './src/screens/AdminLogin';
 
 // Bottom Tab Navigator Screens
 import { Screen1, Screen2, Screen3, Screen4, Screen5 } from './src/screens/bottom';
@@ -162,7 +163,8 @@ const App = () => {
               <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
               <Stack.Screen name="LoginScreen" component={LoginScreen} />
               <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-    
+              <Stack.Screen name="AdminLogin" component={AdminLogin} />
+        
           <Stack.Screen name="TaskScreen" screenOptions={{ headerShown: false}} component={TaskScreen} />  
           <Stack.Screen name="TodoScreen" screenOptions={{ headerShown: false}} component={TodoScreen} />  
           <Stack.Screen name="NoteScreen" screenOptions={{ headerShown: false}} component={NoteScreen} />  
