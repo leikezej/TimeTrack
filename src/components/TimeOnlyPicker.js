@@ -21,6 +21,9 @@ const TimeOnly = () => {
       
       <Text>Selected Time</Text>
       <TimePicker 
+        onSelectedTime={(time) => {
+          setTime(selected);
+        }}
         value={{ hours, minutes, seconds }} 
         isAmpm
         // ampmLocalization={{

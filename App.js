@@ -36,6 +36,8 @@ import TimeSheetScreen from './src/pages/TimeSheet/TimeSheetScreen';
 import TimeInScreen from './src/pages/TimeSheet/TimeInScreen';
 import TimeOutScreen from './src/pages/TimeSheet/TimeOutScreen';
 
+// import SettingsScreen from './src/pages/Settings/SettingsScreen';
+
 function HomeTabs() {
   return (
     // <Tab.Navigator initialRouteName='Calendar' style={styles.tab} screenOptions={{ headerShown: false}} activeColor="#f0edf6"
@@ -47,17 +49,16 @@ function HomeTabs() {
                   screenOptions={{
                     // marginTop: 10,
                     // backgroundColor: '#090',
-                    // tabBarBackground: 'transparent',
-                    tabBarActiveTintColor: '#000',
-                    tabBarInactiveTintColor: '#f2f2f2',
-                    // tabBarActiveBackgroundColor: '#d3d3d3',
+                    tabBarInactiveTintColor: '#ffffff',
+                    tabBarActiveTintColor: 'black',
+                    // tabBarActiveBackgroundColor: '#eef2f0',
                     // marginTop: 20,
                     // tabBarLabelPosition: 'below-icon',
                     headerShown: false,
                     tabBarHideOnKeyboard: true,
                     tabBarLabelStyle: { 
-                    color: '#fff',
-                    tabBarActiveTintColor: '#000',
+                    // color: '#000',
+                    // tabBarActiveTintColor: '#000',
                       fontSize: 15,
                       // borderTopWidth: 0,
                       // position: 'absolute',
@@ -67,16 +68,16 @@ function HomeTabs() {
                     },
                     tabBarItemStyle: { 
                                       // backgroundColor:'#dadce0', //icon bg
-                                      marginTop: 10,
+                                      marginTop: 5,
                                       // height: 90,
-                                      borderRadius:200,
+                                      borderRadius:150,
                                     },
                     tabBarStyle: { 
                                       //  backgroundColor: "none",
-                                    // backgroundColor: "transparent", //container color
-                                    width: 340,
-                                    marginLeft: 30,
-                                    height: 90, //icon background height
+                                    // backgroundColor: "#eef2f9", //container color
+                                    width: 350,
+                                    marginLeft: 20,
+                                    height: 80, //icon background height
                                     // marginTop: 30,
                                       // marginTop: 20,
                                     // marginLeft: 0,
@@ -84,7 +85,7 @@ function HomeTabs() {
                                     alignContent: 'center',
                                     // color: 'white',
                                     borderRadius: 20,
-                                    marginBottom: 10
+                                    marginBottom: 5
                                  },
                   }}
                 >
@@ -92,7 +93,7 @@ function HomeTabs() {
       {/* <Tab.Screen name="Events" component={EventsScreen} options={{ tabBarIcon: ({ color, size }) => ( */}
       <Tab.Screen name="Events" component={Screen1} options={{ tabBarIcon: ({ color, size }) => (
             // <Ionicons name="calendar-outline" color={'#000'} size={40} marginTop={40} />
-            <Image source={require('././src/assets/images/b-icons/calendar-schedule.png')} style={{
+            <Image source={require('././src/assets/images/b-icons/calendar-today-b.png')} style={{
               width: 40,
               height: 40
               // backgroundColor: '#f34',
@@ -104,44 +105,40 @@ function HomeTabs() {
       {/* <Tab.Screen name="Payroll" component={PayrollScreen} options={{ tabBarIcon: ({ color }) => ( */}
       <Tab.Screen name="Payroll" component={Screen2} options={{ tabBarIcon: ({ color }) => (
             // <Ionicons name="home-outline" color={'#000'} size={50} marginTop={40} />
-            <Image source={require('././src/assets/images/b-icons/meeting.png')} style={{
+            <Image source={require('././src/assets/images/b-icons/meetingg.png')} style={{
               width: 40,
               height: 40,
-              // marginBottom:30,
             }}></Image>
           ), }}/>
       
       {/* <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarLabel: 'Home', marginTop: 10, marginBottom: 50, tabBarIcon: ({ color }) => ( */}
       <Tab.Screen name="HomeScreen" component={HomeScreen} options={{ tabBarLabel: 'Home', tabBarIcon: ({ color }) => (
             // <Ionicons name="home-outline" color={'#000'} size={50} marginTop={40} />
-            <Image source={require('././src/assets/images/b-icons/ios-home.png')} style={{
-              width: 40,
-              height: 40,
+            <Image source={require('././src/assets/images/b-icons/ios-home-b.png')} style={{
+              width: 45,
+              height: 45,
+              marginBottom: 20
               // marginBottom:40,
               // backgroundColor: '#f34',
               // tintColor: '#ccc',
-              // borderRadius: '20'
             }}></Image>
           ), }}/>
           
-      <Tab.Screen name="Calendar" component={Screen4} screenOption={{headerShown:false}}options={{ tabBarIcon: ({ color }) => (
-            // <Ionicons name="home-outline" color={'#000'} size={40} />
+      <Tab.Screen name="Settings" component={Screen4} screenOption={{headerShown:false}}options={{ tabBarIcon: ({ color }) => (
             // <Ionicons name="settings" color={'#000'} size={40} />
-            <Image source={require('././src/assets/images/b-icons/icons8-schedule-50.png')} style={{
-              width: 35,
-              height: 35,
-            //   // marginBottom:40,
-            //   // backgroundColor: '#f34',
-            //   // tintColor: '#ccc',
-            //   // borderRadius: '20'
+            <Image source={require('././src/assets/images/b-icons/ios-settings-b.png')} style={{
+              width: 50,
+              height: 50,
             }}></Image>
           ), }}/>
           
       <Tab.Screen name="Profile" component={Screen5} screenOption={{headerShown:false}}options={{ tabBarIcon: ({ color }) => (
             // <Ionicons name="home-outline" color={'#000'} size={40} />
-            <Image source={require('././src/assets/images/b-icons/ios-user.png')} style={{
+            <Image source={require('././src/assets/images/b-icons/appointment-b.png')} style={{
               width: 40,
-              height: 40
+              height: 40,
+                            backgroundColor: '#fff',
+              tintColor: '#000',
               // backgroundColor: '#f34',
               // tintColor '#ccc',
               // borderRadius: '20'
@@ -157,7 +154,7 @@ const App = () => {
   return(
       <NavigationContainer>
           {/* <Stack.Navigator initialRouteName="HomeScreen" screenOptions={{ headerShown: false}} > */}
-          <Stack.Navigator initialRouteName="LoginScreen" screenOptions={{ headerShown: false}} >
+          <Stack.Navigator initialRouteName="HomeScreen" screenOptions={{ headerShown: false}} >
               <Stack.Screen name="HomeScreen" component={HomeTabs} />
               <Stack.Screen name="SplashScreen" component={SplashScreen} />
               <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />

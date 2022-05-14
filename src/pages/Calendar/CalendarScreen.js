@@ -1,56 +1,110 @@
- import React, { Component } from 'react';
- import {
-   StyleSheet,
-   Text,
-   View
- } from 'react-native';
- import Timeline from 'react-native-timeline-flatlist'
- 
- export default class Example extends Component {
-   constructor(){
-     super()
-     this.data = [
-       {time: '09:00', title: 'Archery Training', description: 'The Beginner Archery and Beginner Crossbow course does not require you to bring any equipment, since everything you need will be provided for the course. ', circleColor: '#009688',lineColor:'#009688'},
-       {time: '10:45', title: 'Play Badminton', description: 'Badminton is a racquet sport played using racquets to hit a shuttlecock across a net.'},
-       {time: '12:00', title: 'Lunch', icon: require('./clock.jpg')},
-       {time: '14:00', title: 'Watch Soccer', description: 'Team sport played between two teams of eleven players with a spherical ball. ',lineColor:'#009688'},
-       {time: '16:30', title: 'Go to Fitness center', description: 'Look out for the Best Gym & Fitness Centers around me :)', circleColor: '#009688'}
-     ]
-   } 
- 
-   render() {
-     //'rgb(45,156,219)'
-     return (
-       <View style={styles.container}>
-         <Timeline 
-           style={styles.list}
-           data={this.data}
-           circleSize={35}
-           dotSize={18}
-           circleColor='rgb(45,156,219)'
-           lineColor='rgb(45,156,219)'
-           timeContainerStyle={{minWidth:52, marginTop: -5}}
-           timeStyle={{textAlign: 'center', backgroundColor:'#ff9797', color:'white', padding:5, borderRadius:13}}
-           descriptionStyle={{color:'gray'}}
-           options={{
-             style:{paddingTop:5}
-           }}
-           innerCircle={'dot'}
-         />
-       </View>
-     );
-   }
- }
- 
- const styles = StyleSheet.create({
-   container: {
-     flex: 1,
-     padding: 20,
-     paddingTop:65,
-     backgroundColor:'white'
-   },
-   list: {
-     flex: 1,
-     marginTop:20,
-   },
- });
+import React, { Component } from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Alert,
+} from 'react-native';
+import TimeTableView, { genTimeBlock } from 'react-native-timetable';
+const events_data = [
+  {
+    title: "Math",
+    startTime: genTimeBlock("MON", 9),
+    endTime: genTimeBlock("MON", 10, 50),
+    location: "Classroom 403",
+    extra_descriptions: ["Kim", "Lee"],
+  },
+  {
+    title: "Math",
+    startTime: genTimeBlock("WED", 9),
+    endTime: genTimeBlock("WED", 10, 50),
+    location: "Classroom 403",
+    extra_descriptions: ["Kim", "Lee"],
+  },
+  {
+    title: "Physics",
+    startTime: genTimeBlock("MON", 11),
+    endTime: genTimeBlock("MON", 11, 50),
+    location: "Lab 404",
+    extra_descriptions: ["Einstein"],
+  },
+  {
+    title: "Physics",
+    startTime: genTimeBlock("WED", 11),
+    endTime: genTimeBlock("WED", 11, 50),
+    location: "Lab 404",
+    extra_descriptions: ["Einstein"],
+  },
+  {
+    title: "Mandarin",
+    startTime: genTimeBlock("TUE", 9),
+    endTime: genTimeBlock("TUE", 10, 50),
+    location: "Language Center",
+    extra_descriptions: ["Chen"],
+  },
+  {
+    title: "Japanese",
+    startTime: genTimeBlock("FRI", 9),
+    endTime: genTimeBlock("FRI", 10, 50),
+    location: "Language Center",
+    extra_descriptions: ["Nakamura"],
+  },
+  {
+    title: "Club Activity",
+    startTime: genTimeBlock("THU", 9),
+    endTime: genTimeBlock("THU", 10, 50),
+    location: "Activity Center",
+  },
+  {
+    title: "Club Activity",
+    startTime: genTimeBlock("FRI", 13, 30),
+    endTime: genTimeBlock("FRI", 14, 50),
+    location: "Activity Center",
+  },
+];
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.numOfDays = 5;
+    this.pivotDate = genTimeBlock('mon');
+  }
+
+  scrollViewRef = (ref) => {
+    this.timetableRef = ref;
+  };
+
+  onEventPress = (evt) => {
+    Alert.alert("onEventPress", JSON.stringify(evt));
+  };
+
+  render() {
+    return (
+      <SafeAreaView style={{flex: 1}}>
+        <View style={styles.container}>
+          <TimeTableView
+            scrollViewRef={this.scrollViewRef}
+            events={events_data}
+            pivotTime={9}
+            pivotDate={this.pivotDate}
+            numberOfDays={this.numOfDays}
+            onEventPress={this.onEventPress}
+            headerStyle={styles.headerStyle}
+            formatDateHeader="dddd"
+            locale="ko"
+          />
+        </View>
+      </SafeAreaView>
+    );
+  }
+};
+
+const styles = StyleSheet.create({
+  headerStyle: {
+    backgroundColor: '#81E1B8'
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#F8F8F8',
+  },
+});

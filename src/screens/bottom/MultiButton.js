@@ -7,6 +7,7 @@ import {
   Text
 } from 'react-native';
 
+//Import basic react native elements
 import CircleButton from 'react-native-circle-button';
 
 const App = () => {

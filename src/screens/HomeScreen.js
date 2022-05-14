@@ -88,7 +88,7 @@ export default function App({ navigation }) {
         <Text style={{
           fontSize: 20,
           fontWeight: 'bold',
-          color: 'white',
+          color: 'black',
           // marginTop: 10
         // }}>{profile.name}</Text>
         }}>Master Jep</Text>
@@ -110,8 +110,8 @@ export default function App({ navigation }) {
            <Image style={styles.drawerImage} source={require('../assets/images/icons/g3.png')} />
   </View>
   
-  {/* LOGOUT */}
-        <View style={{ flexGrow: 1, marginTop: 20 }}>
+  {/* Drawer Buttons  */}
+        <View style={{ flexGrow: 1, marginTop: 15, backgroundColor: '#eef2f9' }}>
           {
             // Tab Bar Buttons....
             
@@ -158,9 +158,10 @@ export default function App({ navigation }) {
         </View>
       </View>
 
+    {/* HomeScreen Neuborder Background */}
       <Animated.View style={{
         flexGrow: 1, 
-        backgroundColor: '#fff',
+        backgroundColor: '#ffff',
         position: 'absolute',
         top: 0,
         bottom: 0,
@@ -216,22 +217,21 @@ export default function App({ navigation }) {
                     // width: 150,
                     // height: 70,
                     margin: 2,
+                    marginTop: 5,
+                    marginLeft: 5,
                     borderRadius: 20,
                     padding: 2,
                     // alignItems:'flex-end',
                     // justifyContent: 'flex-end',
                     // marginBottom: 20,
-                    // background: '#eef2f9',
-                    borderRadius: 20,
                     // marginLeft: 0,
-                    onPress: () => console.warn("haha"),
                   }}></Image>
             
                       {/* LOGO */}
           <View>
-            {/* <ImageBackground source={require('../assets/images/icons/clocks.png')} style={{
+            <Image source={require('../assets/images/icons/clocks.png')} style={{
               width: 120,
-              marginLeft: 50,
+              marginLeft: 90,
               // marginBottom: 50,
               // margin: 5,
               // padding: 5,
@@ -239,7 +239,7 @@ export default function App({ navigation }) {
               alignContent: 'center',
               height: 80
             }}>
-            </ImageBackground> */}
+            </Image>
           </View>
      
         <View>
@@ -257,9 +257,8 @@ export default function App({ navigation }) {
       </TouchableOpacity>
           
       <NeuBorderView
-           onPress={() => navigation.navigate('CalendarScreen')}
         width={360}
-        color={'#ffffff'}
+        color={'#eef2f9'}
         height={720}
         borderWidth={6}
         borderRadius={5}
@@ -279,13 +278,13 @@ export default function App({ navigation }) {
     <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, textAlign: 'center' }}>Tasks</Text>  
       <NeuButton
       onPress={() => navigation.navigate('TaskScreen')}
-        color={"#f2f2f2"}
+        color={"#eef2f9"}
         width={70}
         is Convex
         height={70}
         borderRadius={85}
         style={{marginRight:5}}>
-        <Image source={require('../assets/images/b-icons/ios-tasks-b.png')} style={{
+        <Image source={require('../assets/images/b-icons/ios-todo-w.png')} style={{
         width: 40,
         height: 40,
       }}></Image>
@@ -297,13 +296,15 @@ export default function App({ navigation }) {
     <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, textAlign: 'center' }}>Todos</Text>
       <NeuButton
     onPress={() => navigation.navigate('TodoScreen')}
-      color="#f2f2f2"
+      // color="#f2f2f2"
+      color={"#eef2f9"}
       width={70}
       is Convex
       height={70}
       borderRadius={85}
       style={{marginRight:5}}>
-      <Image source={require('../assets/images/b-icons/ios-todo-b.png')} style={{
+      {/* <Image source={require('../assets/images/b-icons/todo-list.png')} style={{ */}
+      <Image source={require('../assets/images/b-icons/todo-list.png')} style={{
       width: 40,
       height: 40,
     }}></Image>
@@ -315,42 +316,27 @@ export default function App({ navigation }) {
       <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, textAlign: 'center' }}>Notes</Text>
         <NeuButton
         onPress={() => navigation.navigate('NoteScreen')}
-        color="#f2f2f2"
+        color="#eef2f9"
         width={75}
         height={75}
         // marginBottom={80}
         borderRadius={85}>
         {/* style={{ marginTop:15 }}> */}
           {/* <Text>Notes</Text> */}
-        <Image source={require('../assets/images/icons/tasks.png')} style={{
-          width: 90,
-          height: 90,
+        {/* <Image source={require('../assets/images/icons/tasks.png')} style={{ */}
+        <Image source={require('../assets/images/b-icons/ios-notes.png')} style={{
+          width: 50,
+          height: 50,
+          marginLeft: 10
           // marginBottom: 20,
-          marginTop: 5,
+          // marginTop: 5,
           // marginLeft: 7,
         }}></Image>
       </NeuButton>
     </View>
 
-{/* timecard */}
-<View styles={{ flexDirection: 'row' }}>
-  <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, textAlign: 'center' }}>TimeLogs</Text>
-    <NeuButton
-      onPress={() => navigation.navigate('TimeSheetScreen')}
-      color="#f2f2f2"
-      width={70}
-      height={70}
-      borderRadius={85}>
-      {/* style={{marginRight:60}}> */}
-      <Image source={require('../assets/images/b-icons/timecard-b.png')} style={{
-      width: 45,
-      height: 45,
-    }}></Image>
-    </NeuButton>
-</View>
 
     </View>
-    
     
     
     
@@ -360,7 +346,11 @@ export default function App({ navigation }) {
     
     
     {/* T I M E IN */}
-     <View>
+     <View
+        style={{
+          marginLeft: 20
+        }}
+     >
         {/* <View>
           <AlertBox />
           <Button
@@ -406,16 +396,11 @@ export default function App({ navigation }) {
      </View>    
         
         {/* T I M E OUT */}
-        <View>
-        {/* <View>
-          <AlertBox />
-          <Button
-            title="Click Me"
-            onPress={() => ref.current.fire({title: 'Title', message: 'Some text message'})}
-          />
-        </View>
-        
-         */}
+        <View
+          style={{
+            marginLeft: 20
+          }}
+        >
         <TouchableOpacity>
            <View
             style={styles.innerView}
@@ -437,7 +422,7 @@ export default function App({ navigation }) {
           style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, marginRight: 15, textAlign: 'center' }}
           >Time</Text>
         <View>
-            <Image source={require('../assets/images/b-icons/meeting.png')} style={{
+            <Image source={require('../assets/images/icons/out.png')} style={{
               width: 80,
               height: 80,
               // marginTop: 30,
@@ -452,27 +437,23 @@ export default function App({ navigation }) {
        </View>      
         
         
-        {/* PAYROLL SCREEN */}
-        <View>
-        <Text
-        style={{ color: '#000000', textAlign: 'center', fontWeight: 'bold', fontSize: 16, marginRight: 15 }}
-        >Payroll</Text>
-            <NeuButton
-              color="#f2f2f2"
-              width={70}
-            is Convex
-              height={70}
-              borderRadius={85}
-              style={{marginRight:10}}>
-              {/* <Text>Convex Btn</Text> */}
-              <Image source={require('../assets/images/b-icons/paytimes.png')} style={{
-              width: 65,
-              tintColor: '#000000',
-              height: 65,
-              // borderRadius: '20'
-            }}></Image>
-            </NeuButton>
-        </View>
+
+{/* timecard */}
+<View styles={{ flexDirection: 'row' }}>
+  <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, textAlign: 'center' }}>TimeLogs</Text>
+    <NeuButton
+      onPress={() => navigation.navigate('TimeSheetScreen')}
+      color="#eef2f9"
+      width={75}
+      height={75}
+      borderRadius={85}>
+      {/* style={{marginRight:60}}> */}
+      <Image source={require('../assets/images/b-icons/timecard.png')} style={{
+      width: 55,
+      height: 55,
+    }}></Image>
+    </NeuButton>
+</View>
 
     </View>
     
@@ -513,12 +494,13 @@ export default function App({ navigation }) {
             style={styles.button}
             // onPress={navigate} 
             >
-          <Text>Calendar Screen</Text>
-          <Image source={require('../assets/images/icons/calendar.png')} style={{
-            width: 110,
-            height: 90,
-          }}>
-          </Image>
+          <Text>Calendar</Text>
+          <Image source={require('../assets/images/b-icons/calendar-schedule.png')} style={{
+              marginTop: 10,
+              width: 50,
+              height: 50,
+              tintColor: '#000',
+            }}></Image>
           </NeuButton>
           
           {/* Clock Area */}
@@ -531,10 +513,11 @@ export default function App({ navigation }) {
             // padding={5}
            onPress={() => navigation.navigate('ClockScreen')}
             style={styles.button}>
-        <Text>Clock Manager</Text>
-        <Image source={require('../assets/images/icons/analog.png')} style={{
-            width: 100,
-            height: 100,
+        <Text>Clock</Text>
+        <Image source={require('../assets/images/b-icons/meeting.png')} style={{
+            width: 55,
+            height: 55,
+            marginTop: 7
           }}></Image>
           </NeuButton>
     </View>
@@ -573,9 +556,9 @@ export default function App({ navigation }) {
             style={styles.button}>
             {/* onPress={navigate}  */}
             <Text>Attendance</Text>
-          <Image source={require('../assets/images/icons/plus.png')} style={{
-            width: 100,
-            height: 100,
+          <Image source={require('../assets/images/b-icons/register.png')} style={{
+            width: 50,
+            height: 50,
           }}></Image>
           </NeuButton>
 
@@ -591,17 +574,13 @@ export default function App({ navigation }) {
             onPress={() => navigation.navigate('TimeSheetScreen')}
             style={styles.button}>
               <Text>TimeSheets</Text>
-              <ImageBackground source={require('../assets/images/icons/todo.png')} style={{
-            width: 140,
-            height: 80,
+              <Image source={require('../assets/images/b-icons/timesheet1.png')} style={{
+            width: 50,
+            marginTop: 5,
+            height: 50,
           }}>
           
-          <ImageBackground source={require('../assets/images/icons/todo.png')} style={{
-            width: 140,
-            height: 80,
-          }}>
-          </ImageBackground>
-          </ImageBackground>
+          </Image>
           </NeuButton>
     </View>
       
@@ -758,7 +737,7 @@ const TabButton = (currentTab, setCurrentTab, title, image) => {
         flexDirection: "row",
         alignItems: 'center',
         paddingVertical: 8,
-        backgroundColor: currentTab == title ? 'black' : 'transparent',
+        backgroundColor: currentTab == title ? 'black' : '#ccc',
         paddingLeft: 13,
         paddingRight: 20,
         borderRadius: 8,
@@ -767,14 +746,14 @@ const TabButton = (currentTab, setCurrentTab, title, image) => {
 
         <Image source={image} style={{
           width: 25, height: 25,
-          tintColor: currentTab == title ? "#e3e3e3" : "black"
+          tintColor: currentTab == title ? "#eef2f9" : "black"
         }}></Image>
 
         <Text style={{
           fontSize: 15,
           fontWeight: 'bold',
           paddingLeft: 15,
-          color: currentTab == title ? "#e3e3e3" : "black"
+          color: currentTab == title ? "#eef2f9" : "black"
         }}>{title}</Text>
 
       </View>
@@ -790,7 +769,7 @@ const styles = StyleSheet.create({
 // side drawer
   container: {
     flex: 1,
-    // backgroundColor: '#eef2f9',
+    backgroundColor: '#eef2f9',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
@@ -807,14 +786,14 @@ const styles = StyleSheet.create({
   },
   //drawer icons
   drawer: {
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#c1c1c1',
     alignItems: 'center',
     borderRadius: 5,
     justifyContent: 'center',
     height: 40,
     margin: 3,
     padding: 3,
-    marginTop: 8,
+    marginTop: 6,
     // color: 'white',
     flexDirection: 'row'
   },
@@ -836,7 +815,7 @@ const styles = StyleSheet.create({
   marginBottom: 10,
     flexDirection: 'row',
     marginRight: 250,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#eef2f9',
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'flex-start'
@@ -856,7 +835,7 @@ const styles = StyleSheet.create({
   
   box1: {
     flex: 1,
-    // backgroundColor: '#f2f2f2',
+    backgroundColor: '#eef2f9',
     // backgroundColor: '#fcfcfc',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -867,7 +846,7 @@ const styles = StyleSheet.create({
   
   box2: {
     flex: 1,
-    // backgroundColor: '#f2f2f2',
+    backgroundColor: '#eef2f9',
     // backgroundColor: '#fcfcfc',
     flexDirection: 'row',
     justifyContent: 'space-between',
