@@ -157,7 +157,7 @@ const App = () => {
   return(
       <NavigationContainer>
           {/* <Stack.Navigator initialRouteName="HomeScreen" screenOptions={{ headerShown: false}} > */}
-          <Stack.Navigator initialRouteName="SplashScreen" screenOptions={{ headerShown: false}} >
+          <Stack.Navigator initialRouteName="LoginScreen" screenOptions={{ headerShown: false}} >
               <Stack.Screen name="HomeScreen" component={HomeTabs} />
               <Stack.Screen name="SplashScreen" component={SplashScreen} />
               <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />

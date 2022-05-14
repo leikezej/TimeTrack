@@ -55,7 +55,7 @@ export default class Register extends Component {
     }
      
     else{
-      var InsertAPIURL = "http://192.168.1.11/api/users/Register.php";   //API to render signup
+      var InsertAPIURL = "http://172.25.16.1/api/users/Register.php";   //API to render signup
 
       var headers = {
         'Accept': 'application/json',

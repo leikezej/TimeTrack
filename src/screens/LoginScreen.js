@@ -128,7 +128,7 @@ export default class Login extends Component {
     if ((Email.length==0) || (Password.length==0)){
       alert("Required Field Is Missing!");
     }else{
-      var APIURL = "http://192.168.1.11/api/users/Login.php";
+      var APIURL = "http://172.25.16.1/api/users/Login.php";
 
       var headers = {
         'Accept' : 'application/json',
@@ -148,7 +148,7 @@ export default class Login extends Component {
           Password: Password,
         })
       }).then((res) => {
-        if(res.success == true){
+        if(res.success === true){
         }
         else {
           alert('welcome');
