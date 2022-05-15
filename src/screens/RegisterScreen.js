@@ -383,7 +383,7 @@ export default class Register extends Component {
                                          <Image
                                            source={{
                                             uri:
-                                             'https://img.icons8.com/ios/344/email-sign.png',
+                                             'https://img.icons8.com/ios/344/google-logo--v1.png',
                                              }}
                                           style={styles.ggSocial}
                                         />

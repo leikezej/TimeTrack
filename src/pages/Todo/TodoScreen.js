@@ -10,8 +10,9 @@ import {
   Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { AsyncStorage } from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AsyncStorage } from 'react-native';
+
 const COLORS = {primary: '#1f145c', white: '#fff'};
 
 const App = () => {

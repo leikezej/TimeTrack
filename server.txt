@@ -1,0 +1,53 @@
+Methods	Urls	Actions
+POST	/api/auth/signup	      signup new account
+POST	/api/auth/signin	      login an account
+POST	/api/auth/signout         logout the account
+GET	    /api/test/all	          retrieve public content
+GET 	/api/test/user      	  access User’s content
+GET	    /api/test/mod	          access Moderator’s content
+GET	    /api/test/admin     	  access Admin’s content
+
+
+##### End points
+| method | url | Description |
+| --- | --- | --- |
+|POST| `/api/user/signin` | to sign in  |
+|POST| `/api/user/signup` | to sign up |
+|GET| `/api/user/` | to get the list of users |
+|GET| `/api/user/:id` | to get the user information |
+|POST| `/api/user/` | to save the user |
+|POST| `/api/user/:id` | to edit the user |
+|DELETE| `/api/user/:id` | to delete the user |
+|GET| `/api/user/checkusername/:username` | to check if the username is already taken |
+|POST| `/api/user/updateaddresses/:id` | to update all the user addresses |
+
+token based express  rest-api  login/register app
+
+– config
+
+configure MySQL database & Sequelize
+configure Auth Key
+– routes
+
+auth.routes.js: POST signup, signin & signout
+user.routes.js: GET public & protected resources
+– middlewares
+
+verifySignUp.js: check duplicate Username or Email
+authJwt.js: verify Token, check User roles in database
+– controllers
+
+auth.controller.js: handle signup, signin & signout actions
+user.controller.js: return public & protected content
+– models for Sequelize Models
+
+user.model.js
+role.model.js
+– server.js: import and initialize necessary modules and routes, listen for connections.
+
+
+
+Register some users with /signup API:
+admin with admin role
+mod with moderator and user roles
+zkoder with user role

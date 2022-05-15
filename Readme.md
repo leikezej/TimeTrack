@@ -1,3 +1,20 @@
+drawer screens
+
+performance dashboard
+share
+timesheet
+about
+
+feedback
+share
+appsheet
+
+Logout
+
+
+
+
+
 react native time tracker app for employees!
 
 ::TODO::

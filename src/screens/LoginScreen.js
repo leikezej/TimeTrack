@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { View, Pressable, Text, TextInput, ScrollView, Image, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Button} from 'react-native';
+import React, { useState, Component } from 'react';
+import { View, Text, TextInput, ScrollView, Image, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Button} from 'react-native';
 // import styles from './style';
 import BackIcon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
@@ -7,6 +7,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/core';
 import { NeuView, NeuButton } from 'react-native-neu-element';
 import PropTypes from 'prop-types';
+import CheckBox from '@react-native-community/checkbox';
 
 class AnimatedTypingText extends Component
 {
@@ -110,7 +111,7 @@ class AnimatedTypingText extends Component
 }
 
 export default class Login extends Component {
-
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -122,6 +123,7 @@ export default class Login extends Component {
   }
 
   LoginUser=()=>{
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
     var Email = this.state.email;
     var Password = this.state.password;
 
@@ -203,8 +205,6 @@ export default class Login extends Component {
     
                       
                   <View style={styles.FormView}>
-                       {/* <TextInput placeholder={"Email Address"} placeholderTextColor={"#fff"} style={styles.TextInput}/>
-                       <TextInput placeholder={"Passsword"} secureTextEntry={true} placeholderTextColor={"#fff"} style={styles.TextInput}/> */}
                             
                             {/* Username or Email */}
                             <View styles={{ marginTop: 20 }}>
@@ -281,17 +281,15 @@ export default class Login extends Component {
                                                 
                                                 </NeuView>
                                       </View>
-                       
-                          {/* <Text style={styles.InputLabel}>Password</Text>
-                       <TextInput secureTextEntry={true} placeholderTextColor={"#000"} style={styles.TextInput}/> */}
-                          <TouchableOpacity
-                            onPress={() => navigation.navigate('ForgotPassScreen')}
-                          >
-                              <Text style={styles.forgot}> 
-                                Forgot Password? 
-                              </Text>
-                          </TouchableOpacity>
-                          
+
+                                      <TouchableOpacity
+                                    onPress={() => navigation.navigate('ForgotPassScreen')}
+                                  >
+                                      <Text style={styles.forgot}> 
+                                        Forgot Password? 
+                                        </Text>
+                               </TouchableOpacity>
+
                       <NeuButton
                                   // onPress={() => {
                                   //   loginUser();
@@ -328,12 +326,6 @@ export default class Login extends Component {
                                   </NeuButton>
                   </View>
                   
-                  {/* <View style={styles.socialIcons}>
-                        <Facebook onPress={() => navigation.navigate('Login')} name="facebook" style={styles.Icon} size={60} color={"#000"}/>
-                        <Github onPress={() => navigation.navigate('Login')} name="github" style={styles.Icon} size={60} color={"#000"}/>
-                        <Email onPress={() => navigation.navigate('Login')} name="email" style={styles.Icon} size={60} color={"#000"}/>
-                    </View> */}
-    
                   <Text 
                                     style={styles.socialDivider}>
                                         OR 
@@ -344,7 +336,7 @@ export default class Login extends Component {
                               <Image
                                        source={{
                                         uri:
-                                         'https://img.icons8.com/ios/344/email-sign.png',
+                                         'https://img.icons8.com/ios/344/google-logo--v1.png',
                                          }}
                                       style={styles.ggSocial}
                                     />
@@ -405,6 +397,16 @@ export default class Login extends Component {
 }
 
 const styles = StyleSheet.create({
+  checkboxContainer: {
+    flexDirection: "row",
+    marginBottom: 20,
+  },
+  checkbox: {
+    alignSelf: "center",
+  },
+  label: {
+    margin: 8,
+  },
     container: {
       flex: 1,
     },

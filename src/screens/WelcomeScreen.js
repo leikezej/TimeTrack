@@ -131,7 +131,7 @@ const App = ({ navigation }) => {
                       </Text>
 
   <View style={{  flexDirection: 'row'}}>
-                           <NeuButton
+                           {/* <NeuButton
                               // onPress={() => Alert.alert('Time In pressed')}
                               // onPress={navigate}
                               // onPress={() => navigation.navigate('AdminLogin')}
@@ -147,7 +147,7 @@ const App = ({ navigation }) => {
                                       <Text style={styles.buttonText}>
                                         Admin
                                       </Text>
-                              </NeuButton>
+                              </NeuButton> */}
                               
                               <NeuButton
                               // onPress={() => Alert.alert('Time In pressed')}
