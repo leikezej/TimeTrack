@@ -1,163 +1,213 @@
-import React, { Component } from 'react';
-import { TimePicker } from 'react-native-simple-time-picker';
-import dayjs from 'dayjs';
+import React, { useState } from "react";
 
-import { StyleSheet, View, TextInput, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
- 
-export default class Timeout extends Component{
-    constructor()
-    {
-        super();
-        this.state = { 
-        seconds: '',
-        minutes: '',
-        hours: '',
-          name: '', 
-          date: '', 
-          time: '',
-          ActivityIndicator_Loading: false, 
+import { Button, Image, TextInput, TouchableOpacity, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-        };
-    }
-    
-    Insert_TimeOut = () =>
-    {
-        this.setState({ ActivityIndicator_Loading : true }, () =>
-        {
-            fetch('http://192.168.1.11/api/timeout.php',
-            {
-                method: 'POST',
-                headers: 
-                {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(
-                {
-                  hours : this.state.hours,
-                  minutes : this.state.minutes,
-                  seconds : this.state.seconds,
-                  name : this.state.name,
-                  date : this.state.date,
-                  time : this.state.time
-                })
- 
-            }).then((response) => response.text()).then((responseJsonFromServer) =>
-            {
-                alert(responseJsonFromServer);
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { NeuBorderView, NeuView, NeuInput, NeuButton } from 'react-native-neu-element';
 
-                this.setState({ ActivityIndicator_Loading : false });
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-            }).catch((error) =>
-            {
-                console.error(error);
-                this.setState({ ActivityIndicator_Loading : false});
-            });
-        });
-    }
-    
-    render()
-    {
-        return(
+import Axios from 'axios';
 
-            <View style = { styles.MainContainer }>
-            
-                <TextInput 
-                  placeholder = "Name"
-                  style = { styles.TextInputStyleClass } 
-                  underlineColorAndroid = "transparent"
-                  // onChangeText = {(TextInputText) => this.setState({ Name: TextInputText })} />
-                  onChangeText={name => this.setState({name})}
-                  value={this.state.name}
-                />
-            
-            <TextInput 
-                  placeholder = "Date"
-                  style = { styles.TextInputStyleClass } 
-                  underlineColorAndroid = "transparent"
-                  // onChangeText = {(TextInputText) => this.setState({ Name: TextInputText })} />
-                  onChangeText={date => this.setState({date})}
-                  value={this.state.date}
-                />
-            
-                 {/* <View style={{ flex: 1, width: 400, justifyContent: 'center', alignItems: 'center' }}> */}
-                  <View style={{ width: 200 }}>
-                      <TimePicker 
-                        // isAmpm
-                        // selectedHours={this.selectedHours}
-                        // selectedMinutes={this.selectedMinutes}
-                        // onChange={(hours, minutes) =>
-                        //   this.setState({ selectedHours: hours, selectedMinutes: minutes })
-                        // }
-                        onChange={time => this.setState({time})}
-                        // onChange={'this.state.time'}
-                        value={this.state.time}
-                        zeroPadding />
-                    </View>
-                 
-                <TouchableOpacity 
-                  activeOpacity = { 0.5 } 
-                  style = { styles.TouchableOpacityStyle } 
-                  onPress = { this.Insert_TimeOut}>
+export default function TimeIn() {
+  const [datePicker, setDatePicker] = useState(false);
+  const [timePicker, setTimePicker] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date(Date.now()));
+  const [name, setName] = useState('');
 
-                    <Text style = { styles.TextStyle }>TimeOut Now</Text>
-                </TouchableOpacity>
+  function showDatePicker() {
+    setDatePicker(true);
+  };
 
-                {
-                this.state.ActivityIndicator_Loading ? <ActivityIndicator color='#009688' size='large'style={styles.ActivityIndicatorStyle} /> : null
-                }
-            </View>
-        );
-    }
+  function showTimePicker() {
+    setTimePicker(true);
+  };
+
+  function onDateSelected(event, value) {
+    setDate(value);
+    setDatePicker(false);
+  };
+
+  function onTimeSelected(event, value) {
+    setTime(value);
+    setTimePicker(false);
+  };
+  
+  const timeIn = async() => {
+    try {
+      const {data} = await Axios.post('http://192.168.1.11/api/timein.php', {
+        name: name,
+        date: date,
+        time: time,
+      });    
+      
+      if (!name.trim()) {
+        alert('Please Enter Name');
+        return;
+      } 
+      else {
+        alert('TimeIn SUCCESS');
+      }
+      // console.log(data)
+    }catch(error) {
+      console.error(error);
+    };
+  };
+
+  return (
+      <View style={styleSheet.MainContainer}>
+      <View>
+              <Image source={require('./timeout.png')} style={{
+                      width: 250,
+                      // marginTop: 25,
+                      // marginLeft: 50,
+                      height: 60,
+                      // backgroundColor: 'transparent'
+                    }}></Image>
+      </View>
+                      
+        <View  style={{ marginTop: 20}}>
+            <NeuView
+                          width={320}
+                          height={60}
+                          color={'#eef2f9'}
+                          borderWidth={5}
+                          borderRadius={10}
+                        >
+        <TextInput 
+            value={name}
+            onChangeText={(value) => setName(value)}
+            placeholder={"Full Name"}
+            height={190}
+            autoFocus
+            width={300}
+            underlineColorAndroid="transparent"
+            keyboardType={'email-address'}
+            borderColor={'transparent'}
+            returnKeyType="next"
+            />
+          </NeuView>
+        </View>
+      
+        {/* DATE PICKER */}
+        <View  style={{ flexDirection: 'row', marginTop: 20}}>
+            <NeuButton
+              onPress={showDatePicker} 
+            color="#eef2f9"
+            width={60}
+            height={60}
+            borderRadius={10}
+            style={{marginRight: 10}}>
+            <Ionicons name="calendar-outline" color={'#000'} size={50}/>
+          </NeuButton>
+            <NeuBorderView
+              onPress={showDatePicker}
+                          width={250}
+                          height={60}
+                          color={'#eef2f9'}
+                          borderWidth={5}
+                          borderRadius={10}
+                        >
+            <View style={{ flexDirection: "row"}}>
+                {datePicker && (
+                    <DateTimePicker
+                      value={date}
+                      format={'YYYY-MM-DD'}
+                      mode={'date'}
+                      display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                      is24Hour={true}
+                      onChange={onDateSelected}
+                      onChangeText={(text) => setDate(text)}
+                      style={styleSheet.datePicker}
+                    />
+                    )}
+                    {/* <Text style={styleSheet.text}>Date = {date.toDateString()}</Text> */}
+                    {!datePicker && (
+                <Text style={styleSheet.text}>{date.toDateString()}</Text>
+            )}
+                </View>
+          </NeuBorderView>
+        </View>
+      
+      
+            {/* TIME PICKER */}
+        <View style={{ flexDirection: 'row', marginTop: 20}}>
+               <NeuButton
+                onPress={showTimePicker} 
+              color="#eef2f9"
+              width={60}
+              height={60}
+              borderRadius={45}
+              style={{marginRight: 9}}> 
+              {/* style> */}
+            <Ionicons name="time-outline" color={'#000'} size={50}/>
+              </NeuButton>
+              <NeuBorderView
+              width={250}
+              height={60}
+              color={'#eef2f9'}
+              borderWidth={5}
+              borderRadius={10}
+            >
+            <View style={{ flexDirection: "row"}}>
+                    {timePicker && (
+                        <DateTimePicker
+                          value={time}
+                          mode={'time'}
+                          format={'HH:mm:ss A'}
+                          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                          is24Hour={false}
+                          onChange={onTimeSelected}
+                        onChangeText={(text) => setTime(text)}
+                          // onChange={onChange
+                          style={styleSheet.datePicker}
+                          onDateChange={(time) => {
+                            setDate(time);
+                          }}
+                        />
+                        )}
+                          {!timePicker && (
+              <View>
+              {/* <Button title="Pick Date" onPress={showDatePicker} /> */}
+              </View>
+              )}
+              <Text>{time.toLocaleTimeString('en-US')}</Text>
+              </View>
+             </NeuBorderView>
+        </View>
+                              
+                              
+        {/* BUTTON */}
+        <NeuButton
+            onPress={timeIn}
+            color="#eef2f9"
+            width={330}
+            height={60}
+            borderRadius={10}
+            style={{ marginTop: 20}}>
+            <Text>TimeOut</Text>
+          </NeuButton>
+
+    </View>
+        
+  );
 }
- 
-const styles = StyleSheet.create(
-{
-    MainContainer:
-    {
+
+const styleSheet = StyleSheet.create({
+  datePickerStyle: {
+    width: 200,
+    marginTop: 20,
+  },
+  MainContainer: {
+    // margin: 10,
+    // padding: 10,0
       flex: 1,
+      alignItems: 'center',
+      backgroundColor: 'white',
       justifyContent: 'center',
-      alignItems: 'center',
-      margin: 20
+      alignItems: 'center'
+  },
 
-    },
-    TextInputStyleClass:
-    {
-      textAlign: 'center',
-      height: 40,
-      backgroundColor : "#fff",
-      borderWidth: 1,
-      borderColor: '#009688',
-      borderRadius: 7 ,
-      marginBottom: 10,
-      width: '95%'
-    },
- 
-    TouchableOpacityStyle:
-   {
-      paddingTop:10,
-      paddingBottom:10,
-      backgroundColor:'#009688',
-      marginBottom: 20,
-      width: '90%'
- 
-    },
- 
-    TextStyle:
-    {
-       color: '#fff',
-        textAlign: 'center',
-        fontSize: 18
-    },
 
-    ActivityIndicatorStyle:{
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      alignItems: 'center',
-      justifyContent: 'center'
-    
-  }
-});
+})

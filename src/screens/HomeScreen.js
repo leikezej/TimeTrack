@@ -119,7 +119,7 @@ export default function App({ navigation }) {
           <Animated.View>
             <TouchableOpacity style={styles.drawer}>
               <Image style={styles.drawerImage} source={require('../assets/images/icons/home.png')} />
-              <Text style={styles.drawerText}>Home</Text> 
+              <Text style={styles.drawerText}>Dashboard</Text> 
                {/* onPress={()=>console.log('dhjksds')}
                onPress={this.onPress}
                <Icon style={styles.icon} name="circle-thin" color="#31C283" size={moderateScale(20)}/> */}
@@ -137,14 +137,14 @@ export default function App({ navigation }) {
               <Text style={styles.drawerText}>Statistics</Text> 
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.drawer}>
+            {/* <TouchableOpacity style={styles.drawer}>
               <Image style={styles.drawerImage} source={require('../assets/images/icons/settings.png')} />
               <Text style={styles.drawerText}>Revenue</Text> 
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.drawer}> 
               <Text style={styles.drawerText}>TimeSheet</Text> 
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </Animated.View>
           
           
@@ -154,14 +154,17 @@ export default function App({ navigation }) {
           {TabButton(currentTab, setCurrentTab, "Privacy & Policy", search)}
           {TabButton(currentTab, setCurrentTab, "Terms & notifications", notifications)}
           {TabButton(currentTab, setCurrentTab, "Helps & Feedback", settings)}
+          <View style={{ marginTOp: 20}}>
           {TabButton(currentTab, setCurrentTab, "LogOut", logout)}
+          </View>
         </View>
       </View>
 
     {/* HomeScreen Neuborder Background */}
       <Animated.View style={{
-        flexGrow: 1, 
-        backgroundColor: '#ffff',
+        // flexGrow: 1, 
+        // marginTop:
+        backgroundColor: '#dadce0',
         position: 'absolute',
         top: 0,
         bottom: 0,
@@ -170,7 +173,6 @@ export default function App({ navigation }) {
         paddingHorizontal: 15,
         paddingVertical: 20,
         borderRadius: showMenu ? 20 : 0,
-        // Transforming View...
         transform: [
           { scale: scaleValue },
           { translateX: offsetValue }

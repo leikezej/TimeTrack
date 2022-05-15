@@ -1,55 +1,27 @@
-import React from 'react';
+import React, { useState } from "react";
+import { Button, Text, View } from "react-native";
+import Modal from "react-native-modal";
 
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text
-} from 'react-native';
+function ModalTester() {
+  const [isModalVisible, setModalVisible] = useState(false);
 
-import CircleButton from 'react-native-circle-button';
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
-const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <Text style={styles.titleStyle}>
-          Example of Expandable Circular Button in React Native
-          using react-native-circle-button
-        </Text>
-        <CircleButton
-          size={45}
-          primaryColor="#41727E"
-          secondaryColor="#459186"
-          onPressButtonTop={
-            () => alert('Top Button Clicked')
-          }
-          onPressButtonRight={
-            () => alert('Right Button Clicked')
-          }
-          onPressButtonBottom={
-            () => alert('Bottom Button Clicked')
-          }
-          onPressButtonLeft={
-            () => alert('Left Button Clicked')
-          }
-        />
-      </View>
-    </SafeAreaView>
-  );
-};
-export default App;
+    <View style={{ flex: 1 }}>
+      <Button title="Show modal" onPress={toggleModal} />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    padding: 10,
-  },
-  titleStyle: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    padding: 10,
-  },
-});
+      <Modal isVisible={isModalVisible}>
+        <View style={{ flex: 1 }}>
+          <Text>Hello!</Text>
+
+          <Button title="Hide modal" onPress={toggleModal} />
+        </View>
+      </Modal>
+    </View>
+  );
+}
+
+export default ModalTester;
