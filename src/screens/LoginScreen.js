@@ -75,6 +75,7 @@ export default class Login extends Component {
           //  justifyContent={center}
           //  alignItems={center}
            style={styles.mainView}>
+           
             <KeyboardAvoidingView>
                {/* <View style={styles.TopView}>
                   <Image source={require('../assets/images/logos/morph.png')}/>
@@ -92,8 +93,8 @@ export default class Login extends Component {
     
                       
                   <View style={styles.FormView}>
-                       {/* <TextInput placeholder={"Email Address"} placeholderTextColor={"#fff"} style={styles.TextInput}/>
-                       <TextInput placeholder={"Passsword"} secureTextEntry={true} placeholderTextColor={"#fff"} style={styles.TextInput}/> */}
+                       {/* <TextInput placeholder={"Email Address"} placeholderTextColor={"#000"} style={styles.TextInput}/>
+                       <TextInput placeholder={"Passsword"} secureTextEntry={true} placeholderTextColor={"#000"} style={styles.TextInput}/> */}
                             
                             {/* Username or Email */}
                             <View style={{
@@ -280,10 +281,11 @@ export default class Login extends Component {
                                           this.props.navigation.navigate("RegisterScreen");
                                         }}
                                 >
-                                <Text style={styles.link}>Register</Text>
+                                <Text styles={{ color: '#000', fontWeight: 150 }}>Register</Text>
                               </TouchableOpacity>
                              </View>
                 </View>
+                
              </KeyboardAvoidingView>
            </ScrollView>
       </View>
@@ -293,6 +295,8 @@ export default class Login extends Component {
 
 const styles = StyleSheet.create({
     container: {
+      backgroundColor: '#c4c4c4',
+      height: 200,
       flex: 1,
     },
     image: {
@@ -322,12 +326,18 @@ const styles = StyleSheet.create({
     // },
     forgot: {
       marginTop: 10,
-      marginLeft: 230
+      marginLeft: 230,
+      color: 'black',
+      fontWeight: 'bold'
     },
     BottomView: {
-      // width: '100%',
-      // height: '100%',
+      borderTopLeftRadius: 50,
+      borderTopRightRadius: 50,
+      marginTop: 170,
+      width: 500,
+      height: 800,
       backgroundColor: '#eef2f9',
+      borderColor: 'black'
       // borderTopLeftRadius: 30,
       // borderTopRightRadius: 30
     },
@@ -421,6 +431,8 @@ const styles = StyleSheet.create({
       flexDirection: 'row'
     },
     Mem: {
+      color: 'black',
+      fontWeight: 'bold',
       flexDirection: 'row'
     },
     ber: {
@@ -493,7 +505,8 @@ const styles = StyleSheet.create({
       // elevation: 15
     },
     link: {
-      color: 'blue',
+      color: 'black',
+      fontWeight: 'bold',
       marginLeft: 5
     },
     Footer:{

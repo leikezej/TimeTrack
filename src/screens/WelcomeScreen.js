@@ -71,13 +71,6 @@ const App = ({ navigation }) => {
     <SafeAreaView style={styles.body}>
       
       <View style={styles.container}>
-        <NeuBorderView style={styles.wrap}
-          width={380}
-          height={765}
-          color={'#eef2f9'}
-          borderWidth={2}
-          borderRadius={16}
-        >
                         {/* NeuSpinner AREA*/}
                       <Animated.View style={styles.wrapper}>
                         <NeuSpinner
@@ -94,7 +87,7 @@ const App = ({ navigation }) => {
                           useNativeDriver={'true'}
                         />
                       
-                        <StatusBar hidden={true} />
+                        {/* <StatusBar hidden={true} /> */}
                         <View style={styles.bigQuadran} />
                           <View style={styles.mediumQuadran} />
                                 
@@ -115,12 +108,12 @@ const App = ({ navigation }) => {
                       <View 
                         // marginBottom={50}
                         // marginTop={0}
+                        marginBottom={100}
                       style={styles.texts}
                       >
                           <Text style={styles.baseText}>
                             <Text style={styles.dateTime}> Current DateTime </Text>
                           </Text>
-                      </View>
                       
                       {/* <Text style={styles.textStyle1}>
                         {currentDate}
@@ -129,20 +122,22 @@ const App = ({ navigation }) => {
                       <Text style={styles.textStyles1}>
                         {currentDateWithMoment}
                       </Text>
+                      </View>
 
-  <View style={{  flexDirection: 'row'}}>
+  <View style={{  flexDirection: 'row', marginBottom: 50}}>
                            <NeuButton
                               // onPress={() => Alert.alert('Time In pressed')}
                               // onPress={navigate}
+                              onPress={() => navigation.navigate('RegisterScreen')}
                               // onPress={() => navigation.navigate('navigate')}
-                                  color={'#eef2f9'}
+                                  color={'#f2f2f2'}
                                   // color="#841584"
-                                  width={150}  
+                                  width={180}  
                                   height={70}
                                   fontSize={70}
                                   fontWeight={'bold'}
                                   borderRadius={16}
-                                  style={{marginLeft: 20, marginTop: 50}}>
+                                  style={{marginLeft: 20, marginTop: 30}}>
                                       <Text style={styles.buttonText}>
                                         Employee
                                       </Text>
@@ -150,16 +145,15 @@ const App = ({ navigation }) => {
                               
                               <NeuButton
                               // onPress={() => Alert.alert('Time In pressed')}
-                              onPress={navigate}
-                              // onPress={() => navigation.navigate('navigate')}
-                                  color={'#eef2f9'}
-                                  // color="#841584"
-                                  width={150}  
+                              // onPress={navigate}
+                              onPress={() => navigation.navigate('RegisterScreen')}
+                                  color={'#f2f2f2'}
+                                  width={180}  
                                   height={70}
                                   fontSize={70}
                                   fontWeight={'bold'}
                                   borderRadius={16}
-                                  style={{marginLeft: 20, marginTop: 50}}>
+                                  style={{marginLeft: 20, marginTop: 30}}>
                                       <Text style={styles.buttonText}>
                                       Employeer
                                       </Text>
@@ -171,21 +165,19 @@ const App = ({ navigation }) => {
                                       // onPress={() => Alert.alert('Time In pressed')}
                                       // onPress={navigate}
                                       onPress={() => navigation.navigate('LoginScreen')}
-                                          color={'#eef2f9'}
-                                          // color="#841584"
+                                          color={'#f2f2f2'}
                                           width={330}  
                                           height={70}
                                           fontSize={70}
                                           fontWeight={'bold'}
                                           borderRadius={16}
-                                          style={{marginLeft: 20, marginTop: 50}}>
+                                          style={{marginLeft: 20, marginTop: 30}}>
                                               <Text style={styles.buttonText}>
                                                 Get Started
                                               </Text>
                                       </NeuButton>
         
                   </View>
-        </NeuBorderView>
       </View>
       
     </SafeAreaView>
@@ -194,8 +186,13 @@ const App = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 body: {
-  // backgroundColor: '#000',
+  backgroundColor: '#f2f2f2',
   height: '100%',
+},
+buttonText: {
+  color: 'black',
+  fontSize: 20,
+  fontWeight: 'bold'
 },
 dateTime: {
   marginTop: 60,
@@ -242,12 +239,13 @@ buttons:{
   textAlign: 'center',
   display: 'flex',
   fontWeight: 'bold',
-  marginBottom: 50
+  marginBottom: 100
   // marginTop: 10
 },
 container: {
   // backgroundColor: '#000',
   height: '100%',
+  width: '100%',
   flex:  1,
   justifyContent: 'center',
   alignItems: 'center',

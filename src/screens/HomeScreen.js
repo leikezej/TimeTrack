@@ -214,7 +214,9 @@ export default function App({ navigation }) {
       <View style={styles.header}>
             <Image source={showMenu ? close : menu} style={{
                     // width: 150,
-                    // height: 70,
+                    height: 50,
+                    marginLeft: 10,
+                    marginTop: 10,
                     margin: 2,
                     borderRadius: 20,
                     padding: 2,
@@ -229,7 +231,7 @@ export default function App({ navigation }) {
             
                       {/* LOGO */}
           <View>
-            {/* <ImageBackground source={require('../assets/images/icons/clocks.png')} style={{
+            <ImageBackground source={require('../assets/images/icons/clocks.png')} style={{
               width: 120,
               marginLeft: 50,
               // marginBottom: 50,
@@ -239,7 +241,7 @@ export default function App({ navigation }) {
               alignContent: 'center',
               height: 80
             }}>
-            </ImageBackground> */}
+            </ImageBackground>
           </View>
      
         <View>
@@ -258,9 +260,9 @@ export default function App({ navigation }) {
           
       <NeuBorderView
            onPress={() => navigation.navigate('CalendarScreen')}
-        width={360}
+        width={450}
         color={'#ffffff'}
-        height={720}
+        height={780}
         borderWidth={6}
         borderRadius={5}
         // marginTop={15}
@@ -276,15 +278,16 @@ export default function App({ navigation }) {
     <View style={styles.box1}>
 {/* tasks */}
 <View>
-    <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, textAlign: 'center' }}>Tasks</Text>  
+    <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 20, marginBottom: 5, textAlign: 'center' }}>Tasks</Text>  
       <NeuButton
       onPress={() => navigation.navigate('TaskScreen')}
         color={"#f2f2f2"}
-        width={70}
+        marginRight={30}
+        width={80}
+        height={80}
         is Convex
-        height={70}
-        borderRadius={85}
-        style={{marginRight:5}}>
+        borderRadius={85}>
+        {/* style={{marginRight:5}}> */}
         <Image source={require('../assets/images/b-icons/ios-tasks-b.png')} style={{
         width: 40,
         height: 40,
@@ -294,15 +297,15 @@ export default function App({ navigation }) {
 
 {/* todos */}
   <View>
-    <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, textAlign: 'center' }}>Todos</Text>
+    <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 20, marginBottom: 5, textAlign: 'center' }}>Tasks</Text>  
       <NeuButton
     onPress={() => navigation.navigate('TodoScreen')}
       color="#f2f2f2"
-      width={70}
+      width={80}
       is Convex
-      height={70}
-      borderRadius={85}
-      style={{marginRight:5}}>
+      height={80}
+      borderRadius={85}>
+      {/* style={{marginRight:5}}> */}
       <Image source={require('../assets/images/b-icons/ios-todo-b.png')} style={{
       width: 40,
       height: 40,
@@ -312,12 +315,12 @@ export default function App({ navigation }) {
 
 {/* notes */}
     <View styles={{ flexDirection: 'row' }}>
-      <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, textAlign: 'center' }}>Notes</Text>
+    <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, textAlign: 'center' }}>Todos</Text>
         <NeuButton
         onPress={() => navigation.navigate('NoteScreen')}
         color="#f2f2f2"
-        width={75}
-        height={75}
+        width={80}
+        height={80}
         // marginBottom={80}
         borderRadius={85}>
         {/* style={{ marginTop:15 }}> */}
@@ -334,12 +337,12 @@ export default function App({ navigation }) {
 
 {/* timecard */}
 <View styles={{ flexDirection: 'row' }}>
-  <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, textAlign: 'center' }}>TimeLogs</Text>
+<Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 16, textAlign: 'center' }}>Notes</Text>
     <NeuButton
       onPress={() => navigation.navigate('TimeSheetScreen')}
       color="#f2f2f2"
-      width={70}
-      height={70}
+      width={80}
+      height={80}
       borderRadius={85}>
       {/* style={{marginRight:60}}> */}
       <Image source={require('../assets/images/b-icons/timecard-b.png')} style={{
@@ -855,14 +858,11 @@ const styles = StyleSheet.create({
   },
   
   box1: {
-    flex: 1,
     // backgroundColor: '#f2f2f2',
     // backgroundColor: '#fcfcfc',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: 5,
+    justifyContent: 'space-around',
     marginTop: 20,
-    padding: 5
   },
   
   box2: {
